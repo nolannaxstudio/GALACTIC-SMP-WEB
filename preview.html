@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Galactic SMP</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#050816;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* Background animation */
+
+.stars{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:url('https://i.imgur.com/YKY28eT.png');
+    animation:moveStars 200s linear infinite;
+    z-index:-1;
+    opacity:0.4;
+}
+
+@keyframes moveStars{
+    from{
+        transform:translateY(0);
+    }
+    to{
+        transform:translateY(-2000px);
+    }
+}
+
+/* NAVBAR */
+
+header{
+    width:100%;
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:999;
+    padding:20px 60px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:rgba(0,0,0,0.45);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid rgba(255,255,255,0.08);
+}
+
+.logo{
+    font-size:32px;
+    font-weight:bold;
+    background:linear-gradient(90deg,#00c6ff,#8b5cf6);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+nav{
+    display:flex;
+    gap:18px;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    padding:12px 18px;
+    border-radius:12px;
+    transition:0.3s;
+}
+
+nav a:hover{
+    background:#8b5cf6;
+    transform:translateY(-2px);
+}
+
+/* HERO */
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    text-align:center;
+    padding:120px 20px 40px;
+}
+
+.hero h1{
+    font-size:90px;
+    margin-bottom:20px;
+    background:linear-gradient(90deg,#00d4ff,#8b5cf6,#ff4fd8);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.hero p{
+    max-width:800px;
+    font-size:22px;
+    opacity:0.8;
+    line-height:1.7;
+}
+
+.hero-buttons{
+    margin-top:40px;
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+.btn{
+    padding:16px 35px;
+    border-radius:14px;
+    text-decoration:none;
+    color:white;
+    font-size:18px;
+    transition:0.3s;
+}
+
+.btn-primary{
+    background:linear-gradient(90deg,#00c6ff,#8b5cf6);
+}
+
+.btn-secondary{
+    background:rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.1);
+}
+
+.btn:hover{
+    transform:scale(1.05);
+}
+
+/* SECTIONS */
+
+section{
+    padding:90px 20px;
+}
+
+.section-title{
+    text-align:center;
+    font-size:55px;
+    margin-bottom:50px;
+}
+
+/* CARDS */
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:30px;
+    max-width:1300px;
+    margin:auto;
+}
+
+.card{
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:24px;
+    padding:35px;
+    transition:0.3s;
+    backdrop-filter:blur(10px);
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    border-color:#8b5cf6;
+}
+
+.card h3{
+    font-size:30px;
+    margin-bottom:15px;
+}
+
+.card p{
+    opacity:0.8;
+    line-height:1.6;
+}
+
+/* STATUS */
+
+.status-wrapper{
+    max-width:1500px;
+    margin:auto;
+    background:rgba(255,255,255,0.04);
+    border-radius:25px;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,0.08);
+    box-shadow:0 0 40px rgba(0,0,0,0.5);
+}
+
+.status-header{
+    padding:25px;
+    font-size:35px;
+    text-align:center;
+    background:rgba(0,0,0,0.35);
+}
+
+iframe{
+    width:100%;
+    height:950px;
+    border:none;
+    background:#0b1026;
+}
+
+/* FOOTER */
+
+footer{
+    padding:40px;
+    text-align:center;
+    opacity:0.7;
+    background:rgba(0,0,0,0.3);
+    margin-top:50px;
+}
+
+/* Responsive */
+
+@media(max-width:900px){
+
+    .hero h1{
+        font-size:60px;
+    }
+
+    .hero p{
+        font-size:18px;
+    }
+
+    header{
+        padding:20px;
+        flex-direction:column;
+        gap:15px;
+    }
+
+    nav{
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+
+    iframe{
+        height:700px;
+    }
+}
+
+</style>
+</head>
+<body>
+
+<div class="stars"></div>
+
+<header>
+    <div class="logo">Galactic SMP</div>
+
+    <nav>
+        <a href="#home">Accueil</a>
+        <a href="#features">Fonctionnalités</a>
+        <a href="#status">Status</a>
+        <a href="#join">Rejoindre</a>
+    </nav>
+</header>
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+
+    <h1>Galactic SMP</h1>
+
+    <p>
+        Le meilleur serveur Minecraft survie galactique.
+        Explore un univers unique, joue avec tes amis,
+        crée des factions et deviens le plus puissant du SMP.
+    </p>
+
+    <div class="hero-buttons">
+        <a class="btn btn-primary" href="#">Jouer Maintenant</a>
+        <a class="btn btn-secondary" href="#">Discord</a>
+    </div>
+
+</section>
+
+<!-- FEATURES -->
+
+<section id="features">
+
+    <h2 class="section-title">Fonctionnalités</h2>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>🌌 Monde Unique</h3>
+            <p>
+                Un univers galactique avec des builds incroyables,
+                des zones secrètes et des événements réguliers.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>⚔️ PvP & Factions</h3>
+            <p>
+                Crée ton équipe, attaque des bases
+                et domine le classement du serveur.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>💎 Économie</h3>
+            <p>
+                Achète, vends et gagne de l'argent
+                grâce au système économique avancé.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>🚀 Événements</h3>
+            <p>
+                Participe à des events uniques
+                avec récompenses exclusives.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- STATUS -->
+
+<section id="status">
+
+    <h2 class="section-title">Status du Serveur</h2>
+
+    <div class="status-wrapper">
+
+        <div class="status-header">
+            📡 Surveillance des Services
+        </div>
+
+        <iframe 
+        src="https://uptime-kuma-production-0a61.up.railway.app/status/default">
+        </iframe>
+
+    </div>
+
+</section>
+
+<!-- JOIN -->
+
+<section id="join">
+
+    <h2 class="section-title">Rejoins Galactic SMP</h2>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>🎮 IP Serveur</h3>
+            <p>
+                play.galacticsmp.fr
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>💬 Discord</h3>
+            <p>
+                Rejoins la communauté et participe aux événements.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>🛡️ Staff Actif</h3>
+            <p>
+                Une équipe présente pour aider les joueurs
+                et protéger le serveur.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<footer>
+    © 2026 Galactic SMP — Tous droits réservés
+</footer>
+
+</body>
+</html>
