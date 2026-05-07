@@ -1,328 +1,246 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Galactic SMP</title>
 
+<!-- FAVICON -->
+<link rel="icon" type="image/png" href="favicon.png">
+
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, Helvetica, sans-serif;
-}
 
 body{
-    background:#050816;
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#1e1e1e;
     color:white;
-    overflow-x:hidden;
 }
 
-/* Background animation */
+/* HEADER */
 
-.stars{
-    position:fixed;
-    width:100%;
-    height:100%;
-    background:url('https://i.imgur.com/YKY28eT.png');
-    animation:moveStars 200s linear infinite;
-    z-index:-1;
-    opacity:0.4;
+header{
+    background:#2b2b2b;
+    padding:20px;
+    text-align:center;
+    border-bottom:3px solid #4a90e2;
 }
 
-@keyframes moveStars{
-    from{
-        transform:translateY(0);
-    }
-    to{
-        transform:translateY(-2000px);
-    }
+header h1{
+    margin:0;
+    font-size:45px;
 }
 
 /* NAVBAR */
 
-header{
-    width:100%;
-    position:fixed;
-    top:0;
-    left:0;
-    z-index:999;
-    padding:20px 60px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    background:rgba(0,0,0,0.45);
-    backdrop-filter:blur(12px);
-    border-bottom:1px solid rgba(255,255,255,0.08);
-}
-
-.logo{
-    font-size:32px;
-    font-weight:bold;
-    background:linear-gradient(90deg,#00c6ff,#8b5cf6);
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-}
-
 nav{
-    display:flex;
-    gap:18px;
+    background:#333;
+    padding:12px;
+    text-align:center;
 }
 
 nav a{
     color:white;
     text-decoration:none;
-    padding:12px 18px;
-    border-radius:12px;
-    transition:0.3s;
+    margin:0 15px;
+    font-size:18px;
 }
 
 nav a:hover{
-    background:#8b5cf6;
-    transform:translateY(-2px);
+    color:#4a90e2;
 }
 
 /* HERO */
 
 .hero{
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    flex-direction:column;
     text-align:center;
-    padding:120px 20px 40px;
+    padding:80px 20px;
+    background:#252525;
 }
 
-.hero h1{
-    font-size:90px;
-    margin-bottom:20px;
-    background:linear-gradient(90deg,#00d4ff,#8b5cf6,#ff4fd8);
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
+.hero h2{
+    font-size:50px;
+    margin-bottom:15px;
 }
 
 .hero p{
-    max-width:800px;
-    font-size:22px;
-    opacity:0.8;
-    line-height:1.7;
-}
-
-.hero-buttons{
-    margin-top:40px;
-    display:flex;
-    gap:20px;
-    flex-wrap:wrap;
-    justify-content:center;
-}
-
-.btn{
-    padding:16px 35px;
-    border-radius:14px;
-    text-decoration:none;
-    color:white;
-    font-size:18px;
-    transition:0.3s;
-}
-
-.btn-primary{
-    background:linear-gradient(90deg,#00c6ff,#8b5cf6);
-}
-
-.btn-secondary{
-    background:rgba(255,255,255,0.08);
-    border:1px solid rgba(255,255,255,0.1);
-}
-
-.btn:hover{
-    transform:scale(1.05);
+    font-size:20px;
+    max-width:700px;
+    margin:auto;
 }
 
 /* SECTIONS */
 
-section{
-    padding:90px 20px;
+.section{
+    padding:50px 20px;
+    text-align:center;
 }
 
-.section-title{
-    text-align:center;
-    font-size:55px;
-    margin-bottom:50px;
+.section h2{
+    font-size:40px;
+    margin-bottom:30px;
 }
 
 /* CARDS */
 
 .cards{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-    gap:30px;
-    max-width:1300px;
-    margin:auto;
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:20px;
 }
 
 .card{
-    background:rgba(255,255,255,0.05);
-    border:1px solid rgba(255,255,255,0.08);
-    border-radius:24px;
-    padding:35px;
-    transition:0.3s;
-    backdrop-filter:blur(10px);
-}
-
-.card:hover{
-    transform:translateY(-8px);
-    border-color:#8b5cf6;
+    background:#2d2d2d;
+    width:280px;
+    padding:25px;
+    border-radius:10px;
+    border:1px solid #444;
 }
 
 .card h3{
-    font-size:30px;
-    margin-bottom:15px;
-}
-
-.card p{
-    opacity:0.8;
-    line-height:1.6;
+    margin-top:0;
 }
 
 /* STATUS */
 
-.status-wrapper{
-    max-width:1500px;
+.status-box{
+    width:95%;
+    max-width:1000px;
     margin:auto;
-    background:rgba(255,255,255,0.04);
-    border-radius:25px;
+    background:#2a2a2a;
+    border-radius:10px;
     overflow:hidden;
-    border:1px solid rgba(255,255,255,0.08);
-    box-shadow:0 0 40px rgba(0,0,0,0.5);
+    border:1px solid #444;
 }
 
-.status-header{
-    padding:25px;
-    font-size:35px;
-    text-align:center;
-    background:rgba(0,0,0,0.35);
+.status-title{
+    background:#333;
+    padding:15px;
+    font-size:28px;
 }
 
-iframe{
-    width:100%;
-    height:950px;
-    border:none;
-    background:#0b1026;
+/* STATUS CONTENT */
+
+.status-content{
+    padding:40px;
+}
+
+.status-button{
+    display:inline-block;
+    margin-top:20px;
+    padding:15px 30px;
+    background:#4a90e2;
+    color:white;
+    text-decoration:none;
+    border-radius:8px;
+    font-size:20px;
+}
+
+.status-button:hover{
+    background:#357abd;
+}
+
+/* SERVER WIDGET */
+
+.server-widget{
+    margin-top:30px;
+}
+
+.server-widget img{
+    max-width:100%;
+    border-radius:10px;
 }
 
 /* FOOTER */
 
 footer{
-    padding:40px;
+    background:#2b2b2b;
     text-align:center;
-    opacity:0.7;
-    background:rgba(0,0,0,0.3);
-    margin-top:50px;
+    padding:20px;
+    margin-top:40px;
 }
 
-/* Responsive */
+/* RESPONSIVE */
 
-@media(max-width:900px){
+@media(max-width:700px){
 
-    .hero h1{
-        font-size:60px;
+    header h1{
+        font-size:35px;
+    }
+
+    .hero h2{
+        font-size:35px;
     }
 
     .hero p{
         font-size:18px;
     }
 
-    header{
-        padding:20px;
-        flex-direction:column;
-        gap:15px;
+    nav a{
+        display:block;
+        margin:10px 0;
     }
 
-    nav{
-        flex-wrap:wrap;
-        justify-content:center;
-    }
-
-    iframe{
-        height:700px;
-    }
 }
 
 </style>
 </head>
+
 <body>
 
-<div class="stars"></div>
-
 <header>
-    <div class="logo">Galactic SMP</div>
-
-    <nav>
-        <a href="#home">Accueil</a>
-        <a href="#features">Fonctionnalités</a>
-        <a href="#status">Status</a>
-        <a href="#join">Rejoindre</a>
-    </nav>
+    <h1>Galactic SMP</h1>
 </header>
+
+<nav>
+    <a href="#">Accueil</a>
+    <a href="#">Serveur</a>
+    <a href="#">Status</a>
+    <a href="#">Discord</a>
+</nav>
 
 <!-- HERO -->
 
-<section class="hero" id="home">
+<section class="hero">
 
-    <h1>Galactic SMP</h1>
+    <h2>Bienvenue sur Galactic SMP</h2>
 
     <p>
-        Le meilleur serveur Minecraft survie galactique.
-        Explore un univers unique, joue avec tes amis,
-        crée des factions et deviens le plus puissant du SMP.
+        Un serveur Minecraft survie avec une communauté active,
+        des événements, du PvP et plein d'aventures.
     </p>
-
-    <div class="hero-buttons">
-        <a class="btn btn-primary" href="#">Jouer Maintenant</a>
-        <a class="btn btn-secondary" href="#">Discord</a>
-    </div>
 
 </section>
 
 <!-- FEATURES -->
 
-<section id="features">
+<section class="section">
 
-    <h2 class="section-title">Fonctionnalités</h2>
+    <h2>Fonctionnalités</h2>
 
     <div class="cards">
 
         <div class="card">
-            <h3>🌌 Monde Unique</h3>
+            <h3>🌍 Survie</h3>
             <p>
-                Un univers galactique avec des builds incroyables,
-                des zones secrètes et des événements réguliers.
+                Explore un immense monde Minecraft avec tes amis.
             </p>
         </div>
 
         <div class="card">
-            <h3>⚔️ PvP & Factions</h3>
+            <h3>⚔️ PvP</h3>
             <p>
-                Crée ton équipe, attaque des bases
-                et domine le classement du serveur.
+                Défends ta base et combats les autres joueurs.
             </p>
         </div>
 
         <div class="card">
             <h3>💎 Économie</h3>
             <p>
-                Achète, vends et gagne de l'argent
-                grâce au système économique avancé.
-            </p>
-        </div>
-
-        <div class="card">
-            <h3>🚀 Événements</h3>
-            <p>
-                Participe à des events uniques
-                avec récompenses exclusives.
+                Achète, vends et échange des objets.
             </p>
         </div>
 
@@ -332,29 +250,45 @@ footer{
 
 <!-- STATUS -->
 
-<section id="status">
+<section class="section">
 
-    <h2 class="section-title">Status du Serveur</h2>
+    <div class="status-box">
 
-    <div class="status-wrapper">
-
-        <div class="status-header">
-            📡 Surveillance des Services
+        <div class="status-title">
+            📡 Status du Serveur
         </div>
 
-        <iframe 
-        src="https://uptime-kuma-production-0a61.up.railway.app/status/default">
-        </iframe>
+        <div class="status-content">
+
+            <p style="font-size:20px;">
+                Clique sur le bouton pour voir le status complet :
+            </p>
+
+            <a class="status-button"
+               href="https://uptime-kuma-production-0a61.up.railway.app/status/default"
+               target="_blank">
+               Voir le Status
+            </a>
+
+            <div class="server-widget">
+
+                <h3>Status Minecraft :</h3>
+
+                <img src="https://api.mcstatus.io/v2/widget/java/play.galacticsmp.fr">
+
+            </div>
+
+        </div>
 
     </div>
 
 </section>
 
-<!-- JOIN -->
+<!-- INFOS -->
 
-<section id="join">
+<section class="section">
 
-    <h2 class="section-title">Rejoins Galactic SMP</h2>
+    <h2>Informations</h2>
 
     <div class="cards">
 
@@ -368,15 +302,7 @@ footer{
         <div class="card">
             <h3>💬 Discord</h3>
             <p>
-                Rejoins la communauté et participe aux événements.
-            </p>
-        </div>
-
-        <div class="card">
-            <h3>🛡️ Staff Actif</h3>
-            <p>
-                Une équipe présente pour aider les joueurs
-                et protéger le serveur.
+                Rejoins la communauté du serveur.
             </p>
         </div>
 
@@ -384,8 +310,10 @@ footer{
 
 </section>
 
+<!-- FOOTER -->
+
 <footer>
-    © 2026 Galactic SMP — Tous droits réservés
+    © 2026 Galactic SMP - Tous droits réservés
 </footer>
 
 </body>
