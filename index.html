@@ -1,313 +1,188 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
-<head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Galactic SMP</title>
-
-<!-- FAVICON -->
-<link rel="icon" type="image/png" href="favicon.ico">
-
-<style>
-
-body{
-    margin:0;
-    font-family:Arial, sans-serif;
-    background:#1e1e1e;
-    color:white;
-}
-
-/* HEADER */
-
-header{
-    background:#2b2b2b;
-    padding:20px;
-    text-align:center;
-    border-bottom:3px solid #4a90e2;
-}
-
-header h1{
-    margin:0;
-    font-size:45px;
-}
-
-/* NAVBAR */
-
-nav{
-    background:#333;
-    padding:12px;
-    text-align:center;
-}
-
-nav a{
-    color:white;
-    text-decoration:none;
-    margin:0 15px;
-    font-size:18px;
-}
-
-nav a:hover{
-    color:#4a90e2;
-}
-
-/* HERO */
-
-.hero{
-    text-align:center;
-    padding:80px 20px;
-    background:#252525;
-}
-
-.hero h2{
-    font-size:50px;
-    margin-bottom:15px;
-}
-
-.hero p{
-    font-size:20px;
-    max-width:700px;
-    margin:auto;
-}
-
-/* SECTIONS */
-
-.section{
-    padding:50px 20px;
-    text-align:center;
-}
-
-.section h2{
-    font-size:40px;
-    margin-bottom:30px;
-}
-
-/* CARDS */
-
-.cards{
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
-    gap:20px;
-}
-
-.card{
-    background:#2d2d2d;
-    width:280px;
-    padding:25px;
-    border-radius:10px;
-    border:1px solid #444;
-}
-
-.card h3{
-    margin-top:0;
-}
-
-/* STATUS */
-
-.status-box{
-    width:95%;
-    max-width:1000px;
-    margin:auto;
-    background:#2a2a2a;
-    border-radius:10px;
-    overflow:hidden;
-    border:1px solid #444;
-}
-
-.status-title{
-    background:#333;
-    padding:15px;
-    font-size:28px;
-}
-
-/* STATUS CONTENT */
-
-.status-content{
-    padding:40px;
-}
-
-.status-button{
-    display:inline-block;
-    margin-top:20px;
-    padding:15px 30px;
-    background:#4a90e2;
-    color:white;
-    text-decoration:none;
-    border-radius:8px;
-    font-size:20px;
-}
-
-.status-button:hover{
-    background:#357abd;
-}
-
-/* SERVER WIDGET */
-
-.server-widget{
-    margin-top:30px;
-}
-
-.server-widget img{
-    max-width:100%;
-    border-radius:10px;
-}
-
-/* FOOTER */
-
-footer{
-    background:#2b2b2b;
-    text-align:center;
-    padding:20px;
-    margin-top:40px;
-}
-
-/* RESPONSIVE */
-
-@media(max-width:700px){
-
-    header h1{
-        font-size:35px;
-    }
-
-    .hero h2{
-        font-size:35px;
-    }
-
-    .hero p{
-        font-size:18px;
-    }
-
-    nav a{
-        display:block;
-        margin:10px 0;
-    }
-
-}
-
-</style>
-</head>
-
-<body>
-
-<header>
-    <h1>Galactic SMP</h1>
-</header>
-
-<nav>
-    <a href="#">Accueil</a>
-    <a href="#">Serveur</a>
-    <a href="#">Status</a>
-    <a href="#">Discord</a>
-</nav>
-
-<!-- HERO -->
-
-<section class="hero">
-
-    <h2>Bienvenue sur Galactic SMP</h2>
-
-    <p>
-        Un serveur Minecraft survie avec une communauté active,
-        des événements, du PvP et plein d'aventures.
-    </p>
-
-</section>
-
-<!-- FEATURES -->
-
-<section class="section">
-
-    <h2>Fonctionnalités</h2>
-
-    <div class="cards">
-
-        <div class="card">
-            <h3>🌍 Survie</h3>
-            <p>
-                Explore un immense monde Minecraft avec tes amis.
-            </p>
-        </div>
-
-        <div class="card">
-            <h3>⚔️ PvP</h3>
-            <p>
-                Défends ta base et combats les autres joueurs.
-            </p>
-        </div>
-
-        <div class="card">
-            <h3>💎 Économie</h3>
-            <p>
-                Achète, vends et échange des objets.
-            </p>
-        </div>
-
-    </div>
-
-</section>
-
-<!-- STATUS -->
-
-<section class="section">
-
-    <div class="status-box">
-
-        <div class="status-title">
-            📡 Status du Serveur
-        </div>
-
-        <div class="status-content">
-
-            <p style="font-size:20px;">
-                Clique sur le bouton pour voir le status complet :
-            </p>
-
-            <a class="status-button"
-               href="https://uptime-kuma-production-0a61.up.railway.app/status/default"
-               target="_blank">
-               Voir le Status
-            </a>
-
-            <div class="server-widget">
-
-                <h3>Status Minecraft :</h3>
-
-                <img src="https://api.mcstatus.io/v2/widget/java/frenchgalacticsmp.falix.gg">
-
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <title>Galactic SMP</title>
+
+        <link rel="icon" type="image/x-icon" href="favicon.ico" />
+        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&display=swap"
+            rel="stylesheet"
+        />
+
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+
+    <body>
+        <header>
+            <div class="container header-inner">
+                <a href="#" class="brand">
+                    <span class="brand-bracket">[</span>
+                    <span class="brand-name">GALACTIC_SMP</span>
+                    <span class="brand-bracket">]</span>
+                </a>
+                <nav>
+                    <a href="#accueil">Accueil</a>
+                    <a href="#serveur">Serveur</a>
+                    <a href="#status">Status</a>
+                    <a href="credits.html">Credits</a>
+                    <a href="#discord">Discord</a>
+                </nav>
             </div>
+        </header>
 
-        </div>
+        <main>
+            <section class="hero" id="accueil">
+                <div class="container">
+                    <p class="kicker">// SERVEUR MINECRAFT JAVA</p>
+                    <h1 class="hero-title">
+                        GALACTIC<br /><span class="hero-title-alt">SMP</span>
+                    </h1>
+                    <p class="hero-text">
+                        Survie. Communauté. Aventure. Rejoins un univers
+                        Minecraft sans pay-to-win, avec du PvP, de l'économie et
+                        des events réguliers.
+                    </p>
+                    <div class="hero-actions">
+                        <a
+                            class="pix-btn pix-btn-primary"
+                            href="https://discord.gg/rf8AcQwdMJ"
+                            target="_blank"
+                            rel="noopener"
+                            >REJOINDRE DISCORD</a
+                        >
+                        <a class="pix-btn" href="#status">VOIR LE STATUS</a>
+                    </div>
 
-    </div>
+                    <div class="ip-bar">
+                        <span class="ip-label">IP :</span>
+                        <code class="ip-value" id="server-ip"
+                            >frenchgalacticsmp.falix.gg</code
+                        >
+                        <button
+                            class="copy-btn"
+                            data-copy="frenchgalacticsmp.falix.gg"
+                            type="button"
+                        >
+                            COPIER
+                        </button>
+                    </div>
+                </div>
+            </section>
 
-</section>
+            <section class="section" id="serveur">
+                <div class="container">
+                    <h2 class="section-title">// FONCTIONNALITES</h2>
 
-<!-- INFOS -->
+                    <div class="grid">
+                        <article class="block">
+                            <div class="block-num">01</div>
+                            <h3>SURVIE</h3>
+                            <p>
+                                Un monde immense, des biomes variés et zéro
+                                reset prévu. Pose tes coordonnées, bâtis ta
+                                base, prends ton temps.
+                            </p>
+                        </article>
 
-<section class="section">
+                        <article class="block">
+                            <div class="block-num">02</div>
+                            <h3>PVP</h3>
+                            <p>
+                                Zones PvP optionnelles, arènes dédiées et events
+                                de combat. Le rush est permis, le grief, jamais.
+                            </p>
+                        </article>
 
-    <h2>Informations</h2>
+                        <article class="block">
+                            <div class="block-num">03</div>
+                            <h3>ECONOMIE</h3>
+                            <p>
+                                Marché entre joueurs, shops persos et monnaie
+                                in-game. Tout se gagne, rien ne s'achète en
+                                vrai.
+                            </p>
+                        </article>
 
-    <div class="cards">
+                        <article class="block">
+                            <div class="block-num">04</div>
+                            <h3>EVENTS</h3>
+                            <p>
+                                Tournois, builds contests, drop parties. La
+                                communauté propose, le staff organise.
+                            </p>
+                        </article>
+                    </div>
+                </div>
+            </section>
 
-        <div class="card">
-            <h3>💬 Discord</h3>
-            <p>
-                Rejoins la communauté du serveur.
-            </p>
-        </div>
+            <section class="section section-alt" id="status">
+                <div class="container">
+                    <h2 class="section-title">// STATUS DU SERVEUR</h2>
 
-    </div>
+                    <div class="status-panel">
+                        <div class="status-row">
+                            <div>
+                                <p class="status-label">ETAT</p>
+                                <p class="status-value">
+                                    <span class="dot"></span>EN LIGNE
+                                </p>
+                            </div>
+                            <a
+                                class="pix-btn"
+                                href="https://uptime-kuma-production-0a61.up.railway.app/status/default"
+                                target="_blank"
+                                rel="noopener"
+                            >
+                                PAGE STATUS
+                            </a>
+                        </div>
 
-</section>
+                        <div class="widget-frame">
+                            <img
+                                src="https://api.mcstatus.io/v2/widget/java/frenchgalacticsmp.falix.gg"
+                                alt="Widget status Minecraft"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-<!-- FOOTER -->
+            <section class="section" id="discord">
+                <div class="container discord-section">
+                    <h2 class="section-title">// COMMUNAUTE</h2>
+                    <p class="discord-text">
+                        Toute la vie du serveur passe par Discord : annonces,
+                        events, support, salons vocaux. Si t'es pas dedans, t'es
+                        à côté.
+                    </p>
+                    <a
+                        class="pix-btn pix-btn-primary pix-btn-lg"
+                        href="https://discord.gg/rf8AcQwdMJ"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        &gt; REJOINDRE LE DISCORD
+                    </a>
+                </div>
+            </section>
+        </main>
 
-<footer>
-    © 2026 Galactic SMP - Tous droits réservés
-</footer>
+        <footer>
+            <div class="container footer-inner">
+                <span>GALACTIC_SMP // 2026</span>
+                <span class="footer-meta"
+                    >Fait pour les joueurs, par des joueurs.</span
+                >
+            </div>
+        </footer>
 
-</body>
+        <script src="script.js"></script>
+    </body>
 </html>
