@@ -266,6 +266,8 @@ nav a:hover {
     border: none;
     cursor: pointer;
     position: relative;
+    display: inline-block;
+    overflow: hidden;
     transition:
         transform 0.08s,
         background 0.15s;
@@ -790,10 +792,6 @@ a.credit-card:hover .credit-link {
         opacity: 1;
         transform: translateY(0);
     }
-}
-
-.pix-btn {
-    overflow: hidden;
 }
 
 .pix-btn::before {
