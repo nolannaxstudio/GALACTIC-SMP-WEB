@@ -56,7 +56,7 @@ if (kicker) {
 }
 
 const revealTargets = document.querySelectorAll(
-    ".block, .status-panel, .discord-text, .widget-frame, .credit-card, .credits-thanks",
+    ".feature-card, .status-panel, .discord-text, .credit-card, .credits-thanks",
 );
 revealTargets.forEach((el) => el.classList.add("reveal"));
 
