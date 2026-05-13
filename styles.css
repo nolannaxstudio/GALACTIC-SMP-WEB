@@ -352,6 +352,12 @@ nav a.active {
 }
 
 /* ----- IP / DISCORD BAR ----- */
+.ip-wrap {
+    display: flex;
+    justify-content: center;
+    margin-top: 8px;
+}
+
 .info-bar {
     display: inline-flex;
     align-items: center;
