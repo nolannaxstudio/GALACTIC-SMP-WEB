@@ -815,6 +815,143 @@ a.credit-card:hover .credit-link {
     left: 130%;
 }
 
+.maintenance-body {
+    overflow-x: hidden;
+}
+
+.maintenance-body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(255, 255, 255, 0.02) 0px,
+        rgba(255, 255, 255, 0.02) 1px,
+        transparent 1px,
+        transparent 3px
+    );
+    z-index: 2;
+}
+
+.maintenance-hero {
+    padding: 110px 0 110px;
+    border-bottom: 2px solid var(--line);
+}
+
+.maintenance-panel {
+    margin: 12px 0 40px;
+    border: 2px solid var(--line-strong);
+    background: var(--bg-alt);
+    padding: 28px;
+    max-width: 720px;
+}
+
+.maintenance-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 28px;
+    padding-bottom: 22px;
+    margin-bottom: 22px;
+    border-bottom: 2px dashed var(--line-strong);
+}
+
+.maintenance-value {
+    color: #ffaa00;
+}
+
+.dot-warn {
+    background: #ffaa00;
+    box-shadow:
+        0 0 0 2px var(--bg),
+        0 0 0 4px #ffaa00;
+}
+
+.loading-dots {
+    font-family: var(--pix);
+    font-size: 14px;
+    color: var(--accent);
+    letter-spacing: 1.5px;
+}
+
+.dot-anim {
+    display: inline-block;
+    animation: dotPulse 1.2s steps(2) infinite;
+}
+
+.dot-anim:nth-child(1) {
+    animation-delay: 0s;
+}
+.dot-anim:nth-child(2) {
+    animation-delay: 0.3s;
+}
+.dot-anim:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+@keyframes dotPulse {
+    0%,
+    50% {
+        opacity: 1;
+    }
+    51%,
+    100% {
+        opacity: 0.15;
+    }
+}
+
+.maintenance-log {
+    font-family: var(--mono);
+    font-size: 18px;
+    color: var(--text-dim);
+    background: var(--bg);
+    border: 2px solid var(--line-strong);
+    padding: 18px 20px;
+    line-height: 1.7;
+}
+
+.maintenance-log p {
+    opacity: 0;
+    animation: logIn 0.3s steps(4) forwards;
+}
+
+.maintenance-log p:nth-child(1) {
+    animation-delay: 0.2s;
+}
+.maintenance-log p:nth-child(2) {
+    animation-delay: 0.7s;
+}
+.maintenance-log p:nth-child(3) {
+    animation-delay: 1.2s;
+}
+.maintenance-log p:nth-child(4) {
+    animation-delay: 1.7s;
+}
+.maintenance-log p:nth-child(5) {
+    animation-delay: 2.2s;
+}
+
+.log-err {
+    color: var(--accent-2);
+}
+
+.log-ok {
+    color: var(--ok);
+}
+
+@keyframes logIn {
+    from {
+        opacity: 0;
+        transform: translateX(-6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
 @media (max-width: 760px) {
     .header-inner {
         flex-direction: column;
@@ -867,5 +1004,18 @@ a.credit-card:hover .credit-link {
 
     .block {
         border-right: none;
+    }
+
+    .maintenance-hero {
+        padding: 60px 0 70px;
+    }
+
+    .maintenance-panel {
+        padding: 20px;
+    }
+
+    .maintenance-log {
+        font-size: 16px;
+        padding: 14px 16px;
     }
 }
