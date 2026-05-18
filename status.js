@@ -459,6 +459,44 @@
     const chartWrap = chartTooltip
         ? chartTooltip.parentElement
         : null;
+    const chartHistoryList = document.getElementById("chart-history-list");
+
+    let lastHistoryListKey = null;
+    const renderHistoryList = (samples) => {
+        if (!chartHistoryList) return;
+        const key = samples.map((s) => `${s.t}:${s.count}`).join(",");
+        if (key === lastHistoryListKey) return;
+        lastHistoryListKey = key;
+        clearChildren(chartHistoryList);
+
+        if (samples.length === 0) {
+            const empty = document.createElement("li");
+            empty.className = "chart-history-empty";
+            empty.textContent = "Pas encore de relevés.";
+            chartHistoryList.appendChild(empty);
+            return;
+        }
+
+        samples
+            .slice()
+            .reverse()
+            .forEach((s) => {
+                const li = document.createElement("li");
+                li.className = "chart-history-item";
+                const time = document.createElement("span");
+                time.className = "chart-history-time";
+                time.textContent = formatHM(new Date(s.t));
+                const count = document.createElement("span");
+                count.className = "chart-history-count";
+                count.textContent =
+                    s.count === 1
+                        ? "1 joueur"
+                        : `${s.count} joueurs`;
+                li.appendChild(time);
+                li.appendChild(count);
+                chartHistoryList.appendChild(li);
+            });
+    };
 
     const showChartTooltip = (rect, timeStr, count) => {
         if (!chartTooltip || !chartWrap) return;
@@ -512,6 +550,8 @@
     };
 
     const renderPlayersChart = (samples) => {
+        renderHistoryList(samples);
+
         const key = samples.map((s) => `${s.t}:${s.count}`).join(",");
         if (key === lastChartKey) return;
         lastChartKey = key;
