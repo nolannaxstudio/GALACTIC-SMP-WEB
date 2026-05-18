@@ -1,3 +1,68 @@
+const menuToggle = document.querySelector(".menu-toggle");
+const siteHeader = document.querySelector("header");
+
+const closeMenu = () => {
+    if (!siteHeader || !menuToggle) return;
+    siteHeader.classList.remove("menu-open");
+    menuToggle.setAttribute("aria-expanded", "false");
+};
+
+if (siteHeader) {
+    let lastScrollY = window.scrollY || 0;
+    let ticking = false;
+    const SHOW_BELOW = 80;
+    const DELTA = 6;
+
+    const updateHeaderVisibility = () => {
+        const current = window.scrollY || 0;
+        const diff = current - lastScrollY;
+
+        if (current < SHOW_BELOW) {
+            siteHeader.classList.remove("is-hidden");
+        } else if (diff > DELTA) {
+            if (siteHeader.classList.contains("menu-open")) closeMenu();
+            siteHeader.classList.add("is-hidden");
+        } else if (diff < -DELTA) {
+            siteHeader.classList.remove("is-hidden");
+        }
+
+        lastScrollY = current;
+        ticking = false;
+    };
+
+    window.addEventListener(
+        "scroll",
+        () => {
+            if (!ticking) {
+                requestAnimationFrame(updateHeaderVisibility);
+                ticking = true;
+            }
+        },
+        { passive: true },
+    );
+}
+
+if (menuToggle && siteHeader) {
+    menuToggle.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const open = siteHeader.classList.toggle("menu-open");
+        menuToggle.setAttribute("aria-expanded", String(open));
+    });
+
+    document.querySelectorAll("nav a").forEach((link) => {
+        link.addEventListener("click", closeMenu);
+    });
+
+    document.addEventListener("click", (e) => {
+        if (!siteHeader.classList.contains("menu-open")) return;
+        if (!siteHeader.contains(e.target)) closeMenu();
+    });
+
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeMenu();
+    });
+}
+
 document.querySelectorAll('a[href^="#"]').forEach((link) => {
     link.addEventListener("click", (e) => {
         const id = link.getAttribute("href");

@@ -1,0 +1,43 @@
+name: Track Server Status
+
+on:
+    schedule:
+        - cron: "*/5 * * * *"
+    workflow_dispatch:
+    push:
+        branches:
+            - main
+        paths:
+            - "scripts/update-history.js"
+            - ".github/workflows/track-status.yml"
+
+permissions:
+    contents: write
+
+concurrency:
+    group: track-status
+    cancel-in-progress: false
+
+jobs:
+    track:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+
+            - name: Update history
+              env:
+                  SERVER: play.zyranex.fr
+              run: node scripts/update-history.js
+
+            - name: Commit if changed
+              run: |
+                  git config user.name "github-actions[bot]"
+                  git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+                  git add data/history.json
+                  if git diff --staged --quiet; then
+                    echo "No changes to commit"
+                  else
+                    git commit -m "chore(data): update server history [skip ci]"
+                    git push
+                  fi
