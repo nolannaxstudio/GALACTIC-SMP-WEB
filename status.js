@@ -51,6 +51,10 @@
     const PLAYERS_MIN_INTERVAL_MS = 15 * 1000;
     const SVG_NS = "http://www.w3.org/2000/svg";
 
+    const REMOTE_HISTORY_URL = "data/history.json";
+    const REMOTE_REFRESH_MS = 60 * 1000;
+    let hasRemoteHistory = false;
+
     let timer = null;
 
     const clearChildren = (node) => {
@@ -695,7 +699,7 @@
             const online = data.online;
             setOnlineUI(online);
             const history = recordStatusToHistory(online);
-            renderUptime(history);
+            if (!hasRemoteHistory) renderUptime(history);
 
             if (online) {
                 const cur = data.players?.online ?? 0;
@@ -726,7 +730,7 @@
                 renderPlayers(data.players);
 
                 const samples = recordPlayersSample(cur, max);
-                renderPlayersChart(samples);
+                if (!hasRemoteHistory) renderPlayersChart(samples);
             } else {
                 setText(playersCurrent, "0");
                 setText(playersMax, "—");
@@ -801,7 +805,41 @@
         }, 180);
     });
 
+    const fetchRemoteHistory = async () => {
+        try {
+            const res = await fetch(
+                `${REMOTE_HISTORY_URL}?t=${Date.now()}`,
+                { cache: "no-store" },
+            );
+            if (!res.ok) return null;
+            const data = await res.json();
+            return {
+                uptime:
+                    data && typeof data.uptime === "object"
+                        ? data.uptime
+                        : {},
+                players: Array.isArray(data?.players) ? data.players : [],
+            };
+        } catch {
+            return null;
+        }
+    };
+
+    const refreshRemoteHistory = async () => {
+        const remote = await fetchRemoteHistory();
+        if (!remote) return;
+        const hasData =
+            Object.keys(remote.uptime).length > 0 ||
+            remote.players.length > 0;
+        if (!hasData) return;
+        hasRemoteHistory = true;
+        renderUptime(remote.uptime);
+        renderPlayersChart(remote.players);
+    };
+
     renderUptime(loadHistory());
     renderPlayersChart(loadPlayersHistory());
+    refreshRemoteHistory();
+    setInterval(refreshRemoteHistory, REMOTE_REFRESH_MS);
     fetchStatus().then(scheduleNext);
 })();
