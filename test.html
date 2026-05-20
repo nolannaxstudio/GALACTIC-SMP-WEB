@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ZYRANEX - Statuss</title>
+
+<link rel="icon" href="favicon.ico" />
+
+<link href="https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  background:#0b0b12;
+  color:white;
+  font-family:Arial, sans-serif;
+  overflow-x:hidden;
+}
+
+/* HEADER */
+header{
+  padding:20px;
+  border-bottom:1px solid #1f2230;
+}
+
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:0 20px;
+}
+
+/* TITLE */
+.title{
+  font-family:"Press Start 2P";
+  font-size:14px;
+  color:#7c5cff;
+}
+
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:15px;
+  margin-top:30px;
+}
+
+/* CARD */
+.card{
+  background:#121523;
+  border:1px solid #22283a;
+  border-radius:14px;
+  padding:18px;
+  width:100%;
+  overflow:hidden;
+}
+
+.card h3{
+  font-size:12px;
+  opacity:.7;
+  margin-bottom:10px;
+}
+
+.value{
+  font-size:20px;
+  font-weight:bold;
+  word-break:break-word;
+}
+
+/* STATUS DOT */
+.dot{
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  display:inline-block;
+  margin-right:8px;
+}
+
+.online{background:#2ecc71;}
+.offline{background:#e74c3c;}
+.loading{background:#f1c40f;}
+
+/* PROGRESS */
+.progress{
+  height:8px;
+  background:#1b1f2c;
+  border-radius:999px;
+  margin-top:10px;
+  overflow:hidden;
+}
+
+.bar{
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg,#7c5cff,#00d4ff);
+  transition:0.4s;
+}
+
+/* TASKS */
+.tasks{
+  margin-top:40px;
+}
+
+.task{
+  background:#121523;
+  border:1px solid #22283a;
+  border-radius:12px;
+  padding:16px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin-bottom:12px;
+  flex-wrap:wrap;
+}
+
+/* MOBILE FIX */
+@media(max-width:600px){
+  .task{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+  <div class="container">
+    <div class="title">ZYRANEX STATUS PANEL</div>
+  </div>
+</header>
+
+<main class="container">
+
+  <!-- GRID -->
+  <div class="grid">
+
+    <div class="card">
+      <h3>MINECRAFT SERVER</h3>
+      <div class="value">
+        <span class="dot loading" id="dot"></span>
+        <span id="status">CHECK...</span>
+      </div>
+      <div class="progress">
+        <div class="bar" id="bar"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>JOUEURS</h3>
+      <div class="value" id="players">-</div>
+    </div>
+
+    <div class="card">
+      <h3>VERSION</h3>
+      <div class="value" id="version">-</div>
+    </div>
+
+    <div class="card">
+      <h3>IP</h3>
+      <div class="value">play.zyranex.fr</div>
+    </div>
+
+  </div>
+
+  <!-- TASKS -->
+  <div class="tasks">
+
+    <div class="task">
+      <div>
+        <strong>Serveur Minecraft</strong><br>
+        <small>Monitoring live</small>
+      </div>
+      <div id="t1">CHECK</div>
+    </div>
+
+    <div class="task">
+      <div>
+        <strong>Site Web</strong><br>
+        <small>zyranex.fr</small>
+      </div>
+      <div id="t2">CHECK</div>
+    </div>
+
+    <div class="task">
+      <div>
+        <strong>API Status</strong><br>
+        <small>System check</small>
+      </div>
+      <div id="t3">CHECK</div>
+    </div>
+
+  </div>
+
+</main>
+
+<script>
+async function load(){
+  const ip = "play.zyranex.fr";
+
+  try{
+    const res = await fetch(`https://api.mcsrvstat.us/2/${ip}`);
+    const data = await res.json();
+
+    const dot = document.getElementById("dot");
+    const status = document.getElementById("status");
+    const bar = document.getElementById("bar");
+
+    if(data.online){
+      dot.className = "dot online";
+      status.textContent = "ONLINE";
+
+      document.getElementById("players").textContent =
+        data.players.online + " / " + data.players.max;
+
+      document.getElementById("version").textContent =
+        data.version || "Unknown";
+
+      bar.style.width = "100%";
+
+      document.getElementById("t1").textContent = "OK";
+      document.getElementById("t2").textContent = "OK";
+      document.getElementById("t3").textContent = "SYNC";
+
+    } else {
+      dot.className = "dot offline";
+      status.textContent = "OFFLINE";
+
+      bar.style.width = "30%";
+
+      document.getElementById("players").textContent = "0";
+      document.getElementById("version").textContent = "-";
+
+      document.getElementById("t1").textContent = "DOWN";
+    }
+
+  } catch(e){
+    document.getElementById("status").textContent = "ERROR";
+  }
+}
+
+load();
+setInterval(load, 30000);
+</script>
+
+</body>
+</html>
