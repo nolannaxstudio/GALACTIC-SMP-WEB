@@ -21,11 +21,16 @@
     --brown-deep: #2b1003;
     --accent: #ffcc33;
     --accent-2: #ff8a1f;
+    --redstone: oklch(0.66 0.2 28);
+    --ender: oklch(0.68 0.16 305);
+    --emerald: oklch(0.72 0.16 150);
+    --sky: oklch(0.73 0.13 220);
     --ok: #8bc34a;
     --warn: #ffaa00;
     --err: #ff5555;
     --pix: "Press Start 2P", monospace;
     --mono: "VT323", "IBM Plex Mono", Consolas, monospace;
+    --ease-smooth-out: cubic-bezier(0.16, 1, 0.3, 1);
 
     /* Arrondis modernes */
     --r-sm: 6px;
@@ -44,6 +49,10 @@ body {
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
+}
+
+html {
+    scroll-padding-top: 94px;
 }
 
 body {
@@ -179,6 +188,10 @@ body {
 }
 
 @media (max-width: 760px) {
+    html {
+        scroll-padding-top: 110px;
+    }
+
     body {
         padding-top: 86px;
     }
@@ -541,6 +554,10 @@ nav a.active:active {
     position: relative;
 }
 
+section[id] {
+    scroll-margin-top: 94px;
+}
+
 .section + .section {
     border-top: 2px solid var(--line);
 }
@@ -558,6 +575,187 @@ nav a.active:active {
     padding-bottom: 16px;
     border-bottom: 2px dashed var(--line-strong);
     text-shadow: 2px 2px 0 var(--brown-deep);
+}
+
+.section-head {
+    max-width: 760px;
+    margin-bottom: 40px;
+}
+
+.section-head .section-title {
+    margin-bottom: 18px;
+}
+
+.section-lead {
+    color: var(--text-dim);
+    font-size: 22px;
+    line-height: 1.55;
+}
+
+/* ----- MINI-GAMES ----- */
+.minigames-section {
+    background:
+        linear-gradient(rgba(255, 204, 51, 0.03) 2px, transparent 2px),
+        linear-gradient(90deg, rgba(255, 204, 51, 0.03) 2px, transparent 2px),
+        rgba(18, 10, 5, 0.22);
+    background-size: 32px 32px;
+}
+
+.minigame-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.minigame-card {
+    --card-accent: var(--gold);
+    background: linear-gradient(
+        180deg,
+        rgba(38, 26, 16, 0.94) 0%,
+        rgba(18, 10, 5, 0.96) 100%
+    );
+    border: 2px solid var(--line-strong);
+    border-radius: var(--r-lg);
+    overflow: hidden;
+    min-width: 0;
+    will-change: transform, box-shadow;
+    transition:
+        border-color 0.42s var(--ease-smooth-out),
+        transform 0.44s var(--ease-smooth-out),
+        box-shadow 0.5s var(--ease-smooth-out);
+}
+
+.minigame-card:nth-child(2) {
+    --card-accent: var(--orange);
+}
+
+.minigame-card:nth-child(3) {
+    --card-accent: var(--emerald);
+}
+
+.minigame-card:nth-child(4) {
+    --card-accent: var(--redstone);
+}
+
+.minigame-card:nth-child(5) {
+    --card-accent: var(--ender);
+}
+
+.minigame-card:nth-child(6) {
+    --card-accent: var(--sky);
+}
+
+.minigame-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--card-accent);
+    box-shadow:
+        0 12px 32px rgba(0, 0, 0, 0.42),
+        0 0 0 1px color-mix(in srgb, var(--card-accent) 35%, transparent);
+}
+
+.minigame-media {
+    aspect-ratio: 16 / 9;
+    min-height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 2px solid var(--line-strong);
+    background:
+        linear-gradient(135deg, rgba(255, 204, 51, 0.12), transparent 48%),
+        radial-gradient(
+            circle at 24% 24%,
+            color-mix(in srgb, var(--card-accent) 28%, transparent),
+            transparent 34%
+        ),
+        linear-gradient(180deg, rgba(18, 10, 5, 0.35), rgba(18, 10, 5, 0.8)),
+        var(--bg-deep);
+}
+
+.minigame-media::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(255, 245, 220, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 245, 220, 0.06) 1px, transparent 1px);
+    background-size: 16px 16px;
+    opacity: 0.85;
+}
+
+.minigame-media::after {
+    content: "";
+    position: absolute;
+    width: 42%;
+    aspect-ratio: 1;
+    border: 3px solid color-mix(in srgb, var(--card-accent) 72%, transparent);
+    box-shadow:
+        10px 10px 0 rgba(0, 0, 0, 0.28),
+        inset 0 0 0 10px rgba(18, 10, 5, 0.42);
+    transform: rotate(45deg);
+    transition:
+        border-color 0.5s var(--ease-smooth-out),
+        box-shadow 0.5s var(--ease-smooth-out),
+        transform 0.5s var(--ease-smooth-out);
+}
+
+.minigame-media span {
+    position: relative;
+    z-index: 1;
+    font-family: var(--pix);
+    font-size: 9px;
+    line-height: 1.6;
+    color: var(--text);
+    letter-spacing: 1.5px;
+    text-align: center;
+    padding: 9px 12px;
+    background: rgba(18, 10, 5, 0.78);
+    border: 2px solid color-mix(in srgb, var(--card-accent) 70%, var(--line));
+    border-radius: var(--r-sm);
+    text-shadow: 2px 2px 0 var(--brown-deep);
+    transition:
+        background-color 0.42s var(--ease-smooth-out),
+        border-color 0.42s var(--ease-smooth-out),
+        transform 0.42s var(--ease-smooth-out);
+}
+
+.minigame-card:hover .minigame-media::after {
+    transform: rotate(45deg) scale(1.035);
+    box-shadow:
+        12px 12px 0 rgba(0, 0, 0, 0.24),
+        inset 0 0 0 10px rgba(18, 10, 5, 0.38);
+}
+
+.minigame-card:hover .minigame-media span {
+    transform: translateY(-1px);
+    background-color: rgba(18, 10, 5, 0.88);
+    border-color: color-mix(in srgb, var(--card-accent) 88%, var(--line));
+}
+
+.minigame-content {
+    padding: 24px 22px 26px;
+}
+
+.minigame-topline {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.minigame-card h3 {
+    font-family: var(--pix);
+    font-size: 13px;
+    color: var(--gold-light);
+    letter-spacing: 1.3px;
+    line-height: 1.45;
+    margin-bottom: 14px;
+}
+
+.minigame-card p {
+    color: var(--text-dim);
+    font-size: 19px;
+    line-height: 1.58;
 }
 
 /* ----- FEATURE GRID ----- */
@@ -745,8 +943,46 @@ footer {
     gap: 12px;
 }
 
+.footer-copy {
+    display: flex;
+    align-items: center;
+    gap: 12px 22px;
+    flex-wrap: wrap;
+}
+
 .footer-meta {
     color: var(--gold);
+}
+
+.footer-links {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.footer-links a {
+    color: var(--text-dim);
+    border: 1px solid var(--line-strong);
+    border-radius: var(--r-sm);
+    padding: 8px 10px;
+    transition:
+        color 0.18s ease,
+        border-color 0.18s ease,
+        background 0.18s ease,
+        transform 0.15s ease;
+}
+
+.footer-links a:hover {
+    color: var(--gold-light);
+    border-color: rgba(255, 204, 51, 0.55);
+    background: rgba(255, 204, 51, 0.07);
+    transform: translateY(1px);
+}
+
+.footer-links a:active {
+    transform: translateY(2px);
 }
 
 /* ----- CREDITS ----- */
@@ -781,7 +1017,7 @@ footer {
 
 .credits-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 20px;
 }
 
@@ -803,6 +1039,75 @@ footer {
     color: inherit;
     display: block;
     overflow: hidden;
+}
+
+.credit-person-card {
+    display: grid;
+    grid-template-columns: 82px minmax(0, 1fr);
+    align-items: center;
+    gap: 18px;
+}
+
+.skin-nolannax {
+    --skin-url: url("https://textures.minecraft.net/texture/2a6fb94c850ffa48a4d04e9d1529dc8940e3d72a68f70528d0ffc4df6c1d43da");
+}
+
+.skin-scorpion7slayer {
+    --skin-url: url("https://textures.minecraft.net/texture/6c7a73ca6ee5d0f7d4504cd834ebeb0b0f00fd696d0953ec8ba996db326d5303");
+}
+
+.credit-avatar-link {
+    display: block;
+    margin-left: 8px;
+    border-radius: var(--r-md);
+    outline-offset: 4px;
+}
+
+.credit-avatar {
+    position: relative;
+    display: block;
+    width: 74px;
+    height: 74px;
+    border: 2px solid var(--line-strong);
+    border-radius: var(--r-md);
+    background:
+        linear-gradient(135deg, rgba(255, 204, 51, 0.16), transparent 54%),
+        var(--bg-deep);
+    box-shadow:
+        inset 0 0 0 4px rgba(18, 10, 5, 0.45),
+        0 6px 0 var(--brown-deep);
+    overflow: hidden;
+    image-rendering: pixelated;
+    transition:
+        border-color 0.2s ease,
+        transform 0.16s ease,
+        box-shadow 0.2s ease;
+}
+
+.credit-avatar-link:hover .credit-avatar {
+    border-color: var(--gold);
+    transform: translateY(2px);
+    box-shadow:
+        inset 0 0 0 4px rgba(18, 10, 5, 0.45),
+        0 3px 0 var(--brown-deep);
+}
+
+.credit-head-base,
+.credit-head-overlay {
+    position: absolute;
+    inset: 11px;
+    background-image: var(--skin-url);
+    background-repeat: no-repeat;
+    background-size: 416px 416px;
+    image-rendering: pixelated;
+}
+
+.credit-head-base {
+    background-position: -52px -52px;
+}
+
+.credit-head-overlay {
+    background-position: -260px -52px;
 }
 
 .credit-card::before {
@@ -856,29 +1161,53 @@ footer {
     margin-left: 8px;
 }
 
+.credit-person-card .credit-role,
+.credit-person-card .credit-name,
+.credit-person-card .credit-tag {
+    margin-left: 0;
+}
+
+.credit-link-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+}
+
 .credit-link {
-    margin-top: 14px;
-    margin-left: 8px;
-    padding-top: 14px;
-    border-top: 1px dashed var(--line-strong);
+    font-family: var(--pix);
+    font-size: 9px;
+    line-height: 1;
+    letter-spacing: 1.5px;
+    padding: 9px 10px;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--r-sm);
     color: var(--text-dim);
+    text-decoration: none;
     transition:
         color 0.25s ease,
+        border-color 0.25s ease,
+        background 0.25s ease,
         transform 0.25s ease;
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
 }
 
 .credit-link-label {
-    font-family: var(--pix);
-    font-size: 9px;
-    letter-spacing: 1.5px;
+    line-height: 1;
 }
 
-a.credit-card:hover .credit-link {
+.credit-card:hover .credit-link {
     color: var(--gold);
-    transform: translateX(4px);
+    border-color: rgba(255, 204, 51, 0.45);
+}
+
+.credit-link:hover {
+    color: var(--gold-light);
+    background: rgba(255, 204, 51, 0.08);
+    border-color: var(--gold);
+    transform: translateY(1px);
 }
 
 .credit-owner {
@@ -924,12 +1253,110 @@ a.credit-card:hover .credit-link {
     margin-bottom: 20px;
 }
 
+.credits-thanks .credits-channel-text {
+    margin: 0 auto 24px;
+    max-width: 520px;
+}
+
 .credits-thanks strong {
     color: var(--gold-light);
     font-weight: normal;
     background: rgba(255, 204, 51, 0.15);
     padding: 3px 10px;
     border-radius: var(--r-sm);
+}
+
+.credits-actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+/* ----- LEGAL PAGES ----- */
+.legal-hero {
+    padding-bottom: 34px;
+}
+
+.legal-title {
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    overflow-wrap: anywhere;
+}
+
+.legal-intro {
+    max-width: 680px;
+    margin: 0 auto;
+    color: var(--text-dim);
+    font-size: 23px;
+    line-height: 1.55;
+    text-align: center;
+}
+
+.legal-section {
+    padding-top: 34px;
+}
+
+.legal-panel {
+    max-width: 900px;
+    margin: 0 auto;
+    border: 2px solid var(--line-strong);
+    border-radius: var(--r-lg);
+    background: linear-gradient(
+        180deg,
+        rgba(38, 26, 16, 0.92) 0%,
+        rgba(18, 10, 5, 0.96) 100%
+    );
+    overflow: hidden;
+    box-shadow:
+        0 16px 42px rgba(0, 0, 0, 0.32),
+        inset 0 1px 0 rgba(255, 204, 51, 0.08);
+}
+
+.legal-row {
+    display: grid;
+    grid-template-columns: 58px 1fr;
+    gap: 22px;
+    padding: 28px;
+    border-bottom: 1px dashed var(--line-strong);
+}
+
+.legal-row:last-of-type {
+    border-bottom: none;
+}
+
+.legal-num {
+    font-family: var(--pix);
+    font-size: 10px;
+    color: var(--gold);
+    letter-spacing: 1.5px;
+    padding-top: 6px;
+}
+
+.legal-row h2 {
+    font-family: var(--pix);
+    font-size: 14px;
+    color: var(--gold-light);
+    letter-spacing: 1.4px;
+    line-height: 1.45;
+    margin-bottom: 12px;
+}
+
+.legal-row p {
+    color: var(--text-dim);
+    font-size: 21px;
+    line-height: 1.62;
+}
+
+.legal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 14px;
+    flex-wrap: wrap;
+    padding: 24px 28px 28px;
+    background: rgba(18, 10, 5, 0.38);
+    border-top: 2px solid var(--line);
 }
 
 /* ----- REVEAL ANIMATIONS ----- */
@@ -946,6 +1373,19 @@ a.credit-card:hover .credit-link {
     transform: translateY(0);
 }
 
+.minigame-card.reveal {
+    transition:
+        opacity 0.55s var(--ease-smooth-out),
+        transform 0.55s var(--ease-smooth-out),
+        border-color 0.42s var(--ease-smooth-out),
+        box-shadow 0.5s var(--ease-smooth-out);
+}
+
+.minigame-card.reveal.in-view:hover {
+    transform: translateY(-4px);
+    transition-delay: 0s;
+}
+
 .feature-card.reveal:nth-child(1) {
     transition-delay: 0s;
 }
@@ -957,6 +1397,35 @@ a.credit-card:hover .credit-link {
 }
 .feature-card.reveal:nth-child(4) {
     transition-delay: 0.24s;
+}
+
+.minigame-card.reveal:nth-child(1) {
+    transition-delay: 0s;
+}
+.minigame-card.reveal:nth-child(2) {
+    transition-delay: 0.06s;
+}
+.minigame-card.reveal:nth-child(3) {
+    transition-delay: 0.12s;
+}
+.minigame-card.reveal:nth-child(4) {
+    transition-delay: 0.18s;
+}
+.minigame-card.reveal:nth-child(5) {
+    transition-delay: 0.24s;
+}
+.minigame-card.reveal:nth-child(6) {
+    transition-delay: 0.3s;
+}
+
+.legal-row.reveal:nth-child(1) {
+    transition-delay: 0s;
+}
+.legal-row.reveal:nth-child(2) {
+    transition-delay: 0.08s;
+}
+.legal-row.reveal:nth-child(3) {
+    transition-delay: 0.16s;
 }
 
 .hero-text,
@@ -2177,8 +2646,36 @@ a.credit-card:hover .credit-link {
         padding: 56px 0;
     }
 
+    section[id] {
+        scroll-margin-top: 110px;
+    }
+
     .section-title {
         font-size: 14px;
+    }
+
+    .section-lead {
+        font-size: 19px;
+    }
+
+    .minigame-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .minigame-media {
+        min-height: 172px;
+    }
+
+    .minigame-content {
+        padding: 22px 18px 24px;
+    }
+
+    .minigame-card h3 {
+        font-size: 12px;
+    }
+
+    .minigame-card p {
+        font-size: 18px;
     }
 
     .info-value {
@@ -2336,6 +2833,57 @@ a.credit-card:hover .credit-link {
     .players-list {
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
         gap: 8px;
+    }
+
+    .credit-person-card {
+        grid-template-columns: 1fr;
+        justify-items: start;
+    }
+
+    .credit-avatar-link {
+        margin-left: 8px;
+    }
+
+    .footer-inner {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .footer-copy,
+    .footer-links {
+        width: 100%;
+    }
+
+    .footer-links {
+        justify-content: flex-start;
+    }
+
+    .legal-intro {
+        font-size: 19px;
+    }
+
+    .legal-title {
+        font-size: 28px;
+        line-height: 1.25;
+    }
+
+    .legal-row {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        padding: 24px 20px;
+    }
+
+    .legal-row h2 {
+        font-size: 12px;
+    }
+
+    .legal-row p {
+        font-size: 18px;
+    }
+
+    .legal-actions {
+        justify-content: flex-start;
+        padding: 22px 20px 24px;
     }
 
     .player-modal-card {
