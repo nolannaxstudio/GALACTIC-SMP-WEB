@@ -9,6 +9,7 @@ légales et les informations de sécurité du projet.
 
 - `index.html` : page d'accueil, mini-jeux, IP serveur et appel Discord.
 - `credits.html` : crédits du projet et contributeurs.
+- `404.html` : page affichée lorsqu'une URL n'existe pas.
 - `maintenance.html` : page d'indisponibilité stylisée.
 - `status.html` : redirection vers le statut public.
 - `terms.html` : conditions d'utilisation.
@@ -29,12 +30,18 @@ Puis ouvrir :
 http://localhost:4173/index.html
 ```
 
+Sur GitHub Pages, `404.html` est automatiquement affichée pour les URLs
+inexistantes après déploiement. En local, certains serveurs de preview peuvent
+afficher leur propre message comme `Cannot GET /about.html`; pour vérifier le
+rendu localement, ouvrez directement `http://localhost:4173/404.html`.
+
 ## Structure
 
 ```text
 .
 ├── index.html
 ├── credits.html
+├── 404.html
 ├── maintenance.html
 ├── status.html
 ├── terms.html
@@ -42,20 +49,23 @@ http://localhost:4173/index.html
 ├── styles.css
 ├── script.js
 ├── SECURITY.md
-└── assets image/logo
+└── assets/
+    └── images/
+        ├── games/
+        └── spawn.webp
 ```
 
 ## Mini-jeux affichés
 
 - Cache Cache
-- Spleef
+- The Bridge
 - Pillar of Fortune
 - PvP
 - PvP Mace
 - Freebuild
 
-Les cartes de mini-jeux utilisent actuellement des placeholders d'image. Les
-captures ou visuels finaux pourront remplacer ces emplacements plus tard.
+Les captures des mini-jeux sont rangées dans `assets/images/games/`. L'image
+du spawn sert de fond à la section d'accueil.
 
 ## Contribution
 
@@ -63,7 +73,7 @@ Avant de proposer une modification :
 
 - Vérifier le rendu mobile et desktop.
 - Garder le style pixel/arcade cohérent avec l'identité ZYRANEX.
-- Eviter les liens externes sans `rel="noopener noreferrer"` lorsqu'ils
+- Éviter les liens externes sans `rel="noopener noreferrer"` lorsqu'ils
   s'ouvrent dans un nouvel onglet.
 - Ne jamais ajouter de clé API, token ou secret dans le dépôt.
 

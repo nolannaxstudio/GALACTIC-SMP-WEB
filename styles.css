@@ -335,9 +335,54 @@ nav a.active:active {
 
 /* ----- HERO ----- */
 .hero {
-    padding: 100px 0 80px;
+    padding: 104px 0 86px;
     position: relative;
     overflow: hidden;
+    isolation: isolate;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background:
+        linear-gradient(
+            180deg,
+            rgba(18, 10, 5, 0.95) 0%,
+            rgba(18, 10, 5, 0.72) 30%,
+            rgba(18, 10, 5, 0.42) 58%,
+            rgba(18, 10, 5, 0.88) 100%
+        ),
+        linear-gradient(
+            90deg,
+            rgba(18, 10, 5, 0.72) 0%,
+            rgba(18, 10, 5, 0.12) 48%,
+            rgba(18, 10, 5, 0.74) 100%
+        ),
+        url("assets/images/spawn.webp") center 52% / cover no-repeat;
+    transform: scale(1.01);
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 240px;
+    z-index: 0;
+    pointer-events: none;
+    background: linear-gradient(
+        180deg,
+        rgba(255, 204, 51, 0.28) 0%,
+        rgba(232, 127, 26, 0.1) 42%,
+        transparent 100%
+    );
+}
+
+.hero .container {
+    z-index: 1;
 }
 
 .hero-logo-wrap {
@@ -645,6 +690,30 @@ section[id] {
     --card-accent: var(--sky);
 }
 
+.game-cache {
+    --game-image: url("assets/images/games/cache-cache.webp");
+}
+
+.game-bridge {
+    --game-image: url("assets/images/games/the-bridge.webp");
+}
+
+.game-pillar {
+    --game-image: url("assets/images/games/pillar-of-fortune.webp");
+}
+
+.game-pvp {
+    --game-image: url("assets/images/games/pvp.webp");
+}
+
+.game-pvp-mace {
+    --game-image: url("assets/images/games/pvp-mace.webp");
+}
+
+.game-freebuild {
+    --game-image: url("assets/images/games/freebuild.webp");
+}
+
 .minigame-card:hover {
     transform: translateY(-4px);
     border-color: var(--card-accent);
@@ -654,83 +723,98 @@ section[id] {
 }
 
 .minigame-media {
-    aspect-ratio: 16 / 9;
-    min-height: 150px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    aspect-ratio: 4 / 3;
+    min-height: 210px;
     position: relative;
     overflow: hidden;
     border-bottom: 2px solid var(--line-strong);
-    background:
-        linear-gradient(135deg, rgba(255, 204, 51, 0.12), transparent 48%),
-        radial-gradient(
-            circle at 24% 24%,
-            color-mix(in srgb, var(--card-accent) 28%, transparent),
-            transparent 34%
-        ),
-        linear-gradient(180deg, rgba(18, 10, 5, 0.35), rgba(18, 10, 5, 0.8)),
-        var(--bg-deep);
+    background: var(--bg-deep);
+    isolation: isolate;
 }
 
 .minigame-media::before {
     content: "";
     position: absolute;
-    inset: 0;
-    background-image:
-        linear-gradient(rgba(255, 245, 220, 0.06) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 245, 220, 0.06) 1px, transparent 1px);
-    background-size: 16px 16px;
-    opacity: 0.85;
+    inset: -16px;
+    z-index: 0;
+    background:
+        linear-gradient(
+            180deg,
+            rgba(18, 10, 5, 0.2) 0%,
+            rgba(18, 10, 5, 0.64) 100%
+        ),
+        var(--game-image) center / cover no-repeat;
+    filter: blur(14px) saturate(1.12);
+    opacity: 0.76;
+    transform: scale(1.04);
+    transition:
+        opacity 0.5s var(--ease-smooth-out),
+        transform 0.5s var(--ease-smooth-out);
 }
 
 .minigame-media::after {
     content: "";
     position: absolute;
-    width: 42%;
-    aspect-ratio: 1;
-    border: 3px solid color-mix(in srgb, var(--card-accent) 72%, transparent);
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    background:
+        linear-gradient(
+            180deg,
+            rgba(18, 10, 5, 0.14) 0%,
+            transparent 40%,
+            rgba(18, 10, 5, 0.5) 100%
+        ),
+        linear-gradient(
+            rgba(255, 245, 220, 0.055) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255, 245, 220, 0.04) 1px,
+            transparent 1px
+        );
+    background-size:
+        auto,
+        16px 16px,
+        16px 16px;
     box-shadow:
-        10px 10px 0 rgba(0, 0, 0, 0.28),
-        inset 0 0 0 10px rgba(18, 10, 5, 0.42);
-    transform: rotate(45deg);
+        inset 0 0 0 1px color-mix(in srgb, var(--card-accent) 32%, transparent),
+        inset 0 -44px 52px rgba(18, 10, 5, 0.38);
     transition:
-        border-color 0.5s var(--ease-smooth-out),
         box-shadow 0.5s var(--ease-smooth-out),
+        opacity 0.5s var(--ease-smooth-out);
+}
+
+.minigame-media img {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    padding: 12px;
+    filter: drop-shadow(0 12px 22px rgba(0, 0, 0, 0.4));
+    transition:
+        filter 0.5s var(--ease-smooth-out),
         transform 0.5s var(--ease-smooth-out);
 }
 
-.minigame-media span {
-    position: relative;
-    z-index: 1;
-    font-family: var(--pix);
-    font-size: 9px;
-    line-height: 1.6;
-    color: var(--text);
-    letter-spacing: 1.5px;
-    text-align: center;
-    padding: 9px 12px;
-    background: rgba(18, 10, 5, 0.78);
-    border: 2px solid color-mix(in srgb, var(--card-accent) 70%, var(--line));
-    border-radius: var(--r-sm);
-    text-shadow: 2px 2px 0 var(--brown-deep);
-    transition:
-        background-color 0.42s var(--ease-smooth-out),
-        border-color 0.42s var(--ease-smooth-out),
-        transform 0.42s var(--ease-smooth-out);
+.minigame-card:hover .minigame-media::before {
+    opacity: 0.9;
+    transform: scale(1.08);
 }
 
 .minigame-card:hover .minigame-media::after {
-    transform: rotate(45deg) scale(1.035);
     box-shadow:
-        12px 12px 0 rgba(0, 0, 0, 0.24),
-        inset 0 0 0 10px rgba(18, 10, 5, 0.38);
+        inset 0 0 0 1px color-mix(in srgb, var(--card-accent) 54%, transparent),
+        inset 0 -44px 52px rgba(18, 10, 5, 0.32);
 }
 
-.minigame-card:hover .minigame-media span {
-    transform: translateY(-1px);
-    background-color: rgba(18, 10, 5, 0.88);
-    border-color: color-mix(in srgb, var(--card-accent) 88%, var(--line));
+.minigame-card:hover .minigame-media img {
+    transform: scale(1.025);
+    filter: drop-shadow(0 15px 28px rgba(0, 0, 0, 0.48));
 }
 
 .minigame-content {
@@ -1603,6 +1687,171 @@ footer {
         opacity: 1;
         transform: translateX(0);
     }
+}
+
+/* ----- 404 PAGE ----- */
+.notfound-hero {
+    min-height: calc(100vh - 78px);
+    display: flex;
+    align-items: center;
+    padding: 78px 0 88px;
+}
+
+.notfound-shell {
+    display: grid;
+    grid-template-columns: minmax(0, 0.92fr) minmax(300px, 1.08fr);
+    gap: clamp(28px, 6vw, 72px);
+    align-items: center;
+}
+
+.notfound-main {
+    min-width: 0;
+}
+
+.notfound-chip-wrap {
+    justify-content: flex-start;
+}
+
+.notfound-code {
+    font-family: var(--pix);
+    font-size: clamp(70px, 13vw, 172px);
+    line-height: 0.9;
+    color: var(--gold);
+    letter-spacing: 4px;
+    margin-bottom: 22px;
+    text-shadow:
+        6px 6px 0 var(--brown),
+        12px 12px 0 var(--brown-deep);
+    animation: titleIn 0.58s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.notfound-title {
+    max-width: 560px;
+    font-size: clamp(26px, 3.2vw, 42px);
+    text-align: left;
+    overflow-wrap: anywhere;
+    margin-bottom: 22px;
+}
+
+.notfound-text {
+    max-width: 620px;
+    margin: 0 0 34px;
+    text-align: left;
+}
+
+.notfound-actions {
+    justify-content: flex-start;
+    margin-bottom: 0;
+}
+
+.notfound-screen {
+    border: 2px solid var(--line-strong);
+    border-radius: var(--r-lg);
+    background: linear-gradient(
+        180deg,
+        rgba(38, 26, 16, 0.92) 0%,
+        rgba(18, 10, 5, 0.96) 100%
+    );
+    padding: 24px;
+    min-width: 0;
+    overflow: hidden;
+    box-shadow:
+        0 18px 44px rgba(0, 0, 0, 0.34),
+        inset 0 1px 0 rgba(255, 204, 51, 0.1);
+    animation: fadeUp 0.62s cubic-bezier(0.22, 1, 0.36, 1) 0.12s both;
+}
+
+.notfound-map {
+    min-height: 260px;
+    border: 2px solid var(--line);
+    border-radius: var(--r-md);
+    background:
+        linear-gradient(rgba(255, 204, 51, 0.07) 2px, transparent 2px),
+        linear-gradient(90deg, rgba(255, 204, 51, 0.07) 2px, transparent 2px),
+        radial-gradient(
+            circle at 68% 36%,
+            rgba(255, 204, 51, 0.2),
+            transparent 24%
+        ),
+        var(--bg-deep);
+    background-size:
+        28px 28px,
+        28px 28px,
+        auto,
+        auto;
+    position: relative;
+    overflow: hidden;
+    image-rendering: pixelated;
+}
+
+.notfound-map::before {
+    content: "";
+    position: absolute;
+    width: 118px;
+    height: 118px;
+    left: 12%;
+    top: 24%;
+    border: 3px dashed var(--err);
+    background:
+        linear-gradient(135deg, rgba(255, 85, 85, 0.18), transparent 58%),
+        rgba(18, 10, 5, 0.72);
+    box-shadow:
+        10px 10px 0 rgba(0, 0, 0, 0.24),
+        inset 0 0 0 8px rgba(18, 10, 5, 0.42);
+    transform: rotate(45deg);
+}
+
+.notfound-map::after {
+    content: "VOID";
+    position: absolute;
+    left: calc(12% + 30px);
+    top: calc(24% + 48px);
+    font-family: var(--pix);
+    font-size: 9px;
+    color: var(--err);
+    letter-spacing: 1.5px;
+    text-shadow: 2px 2px 0 var(--brown-deep);
+}
+
+.notfound-player {
+    position: absolute;
+    right: 24%;
+    bottom: 28%;
+    width: 28px;
+    height: 28px;
+    background: var(--gold);
+    border: 3px solid var(--brown-deep);
+    box-shadow:
+        0 0 0 4px rgba(255, 204, 51, 0.14),
+        10px 10px 0 rgba(0, 0, 0, 0.28);
+    animation: playerIdle 1.5s steps(2) infinite;
+}
+
+@keyframes playerIdle {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-4px);
+    }
+}
+
+.notfound-log {
+    font-family: var(--mono);
+    font-size: 18px;
+    color: var(--text-dim);
+    line-height: 1.65;
+    margin-top: 18px;
+    padding: 18px 20px;
+    border: 2px solid var(--line-strong);
+    border-radius: var(--r-md);
+    background: var(--bg-deep);
+}
+
+.notfound-log span {
+    color: var(--gold-light);
+    word-break: break-all;
 }
 
 /* ----- BADGES / CHIPS ----- */
@@ -2609,7 +2858,11 @@ footer {
     }
 
     .hero {
-        padding: 60px 0 50px;
+        padding: 66px 0 54px;
+    }
+
+    .hero::after {
+        height: 180px;
     }
 
     .hero-logo {
@@ -2663,7 +2916,7 @@ footer {
     }
 
     .minigame-media {
-        min-height: 172px;
+        min-height: 248px;
     }
 
     .minigame-content {
@@ -2691,6 +2944,51 @@ footer {
     }
 
     .maintenance-log {
+        font-size: 16px;
+        padding: 14px 16px;
+    }
+
+    .notfound-hero {
+        min-height: auto;
+        padding: 50px 0 60px;
+    }
+
+    .notfound-shell {
+        grid-template-columns: 1fr;
+    }
+
+    .notfound-chip-wrap,
+    .notfound-actions {
+        justify-content: center;
+    }
+
+    .notfound-code,
+    .notfound-title,
+    .notfound-text {
+        text-align: center;
+    }
+
+    .notfound-code {
+        font-size: clamp(58px, 22vw, 112px);
+        text-shadow:
+            4px 4px 0 var(--brown),
+            8px 8px 0 var(--brown-deep);
+    }
+
+    .notfound-text {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .notfound-screen {
+        padding: 18px;
+    }
+
+    .notfound-map {
+        min-height: 210px;
+    }
+
+    .notfound-log {
         font-size: 16px;
         padding: 14px 16px;
     }
