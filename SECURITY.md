@@ -1,17 +1,19 @@
 # Politique de sécurité
 
 Merci de contribuer à la sécurité de **ZYRANEX**. Ce document explique comment
-signaler une faille et ce à quoi vous pouvez vous attendre en retour.
+signaler une faille, ce qui est dans le périmètre du site, et ce à quoi vous
+pouvez vous attendre en retour.
 
 ## Versions supportées
 
 Seule la version déployée à partir de la branche `main` est activement
-maintenue. Les forks et anciennes branches ne reçoivent pas de correctifs.
+maintenue. Les forks, anciennes branches et copies non officielles ne reçoivent
+pas de correctifs de sécurité.
 
 | Branche | Supportée |
 | ------- | --------- |
-| `main`  | ✅        |
-| autres  | ❌        |
+| `main`  | Oui       |
+| autres  | Non       |
 
 ## Signaler une vulnérabilité
 
@@ -19,96 +21,101 @@ maintenue. Les forks et anciennes branches ne reçoivent pas de correctifs.
 
 Privilégiez l'un de ces canaux confidentiels :
 
-1. **GitHub Security Advisories** (recommandé) — onglet
-   `Security → Report a vulnerability` du dépôt. Le rapport reste privé tant
-   qu'il n'est pas publié.
-2. **Discord** — message privé à un membre du staff sur le serveur officiel :
+1. **GitHub Security Advisories** (recommandé) : onglet
+   `Security -> Report a vulnerability` du dépôt, si l'option est disponible.
+2. **Discord** : message privé à un membre du staff sur le serveur officiel :
    <https://discord.gg/rf8AcQwdMJ>
 
 Incluez dans votre rapport :
 
-- Une description claire du problème et son impact.
-- Les étapes précises pour le reproduire (URL, payload, navigateur…).
-- Une preuve de concept si possible (capture, log, snippet).
+- Une description claire du problème et de son impact.
+- Les étapes précises pour le reproduire (URL, navigateur, payload, action).
+- Une preuve de concept si possible (capture, log, snippet minimal).
+- Les fichiers ou pages concernés.
 - Votre proposition de correctif si vous en avez une.
 
-### Délais
+Merci de ne pas exploiter une faille au-delà de ce qui est nécessaire pour la
+démontrer. Ne tentez pas de supprimer, modifier, voler ou publier des données.
 
-| Étape                          | Délai indicatif       |
-| ------------------------------ | --------------------- |
-| Accusé de réception            | 72 h                  |
-| Première évaluation            | 7 jours               |
-| Correctif (selon la sévérité)  | 7 à 30 jours          |
-| Publication coordonnée         | après déploiement     |
+## Délais indicatifs
 
-Nous communiquons publiquement sur la faille **uniquement après** que le
-correctif soit déployé en production, et avec votre accord pour le crédit.
+| Étape                         | Délai indicatif   |
+| ----------------------------- | ----------------- |
+| Accusé de réception           | 72 h              |
+| Première évaluation           | 7 jours           |
+| Correctif selon la sévérité   | 7 à 30 jours      |
+| Publication coordonnée        | après déploiement |
 
-## Périmètre
+Nous communiquons publiquement sur une faille uniquement après le déploiement du
+correctif, et avec votre accord pour le crédit.
 
-Le projet est un site statique (HTML/CSS/JS) servi par **GitHub Pages**, avec
-un workflow GitHub Actions qui agrège l'état du serveur Minecraft via une API
-publique. Les éléments suivants entrent dans le périmètre :
+## Périmètre actuel
 
-- Code source du site (`*.html`, `*.css`, `*.js`).
-- Workflow GitHub Actions (`.github/workflows/`) et script associé
-  (`scripts/update-history.js`).
-- Données générées dans `data/history.json`.
-- Gestion des données locales du navigateur (`localStorage`).
-- Liens externes intégrés (NameMC, Crafty.gg, Discord).
+Le projet est un site statique HTML/CSS/JS pour **ZYRANEX**. Les éléments
+suivants entrent dans le périmètre :
+
+- Pages publiques du site : `index.html`, `credits.html`, `maintenance.html`,
+  `status.html`, `terms.html`, `privacy.html`.
+- Feuilles de style et scripts client : `styles.css`, `script.js`.
+- Assets du site : logos, favicons et images servies avec le site.
+- Navigation, menu mobile, transitions, liens d'ancrage et bouton de copie de
+  l'IP serveur.
+- Liens externes intégrés depuis le site (Discord, statut externe, polices
+  Google Fonts).
+- Documents publics liés aux conditions, à la confidentialité et à la sécurité.
 
 ### Exemples de vulnérabilités recherchées
 
-- **XSS** via données externes (pseudos de joueurs, MOTD, etc.).
-- **Injection** dans le workflow GitHub Actions (commandes shell, paramètres
-  non échappés).
-- **Fuite d'informations sensibles** (clés API, secrets, tokens) dans le code
-  ou les commits.
-- **Atteinte à l'intégrité** du fichier `data/history.json` via une
-  manipulation côté client.
-- **CSRF / clickjacking** sur des fonctionnalités sensibles.
-- **Dépendances** avec vulnérabilité connue (CVE).
+- **XSS / injection DOM** si du contenu dynamique est ajouté ou mal échappé.
+- **Tabnabbing** ou lien externe dangereux (`target="_blank"` sans protection).
+- **Redirection trompeuse** ou remplacement malveillant d'un lien officiel.
+- **Fuite d'informations sensibles** dans le code, l'historique Git ou les
+  fichiers statiques.
+- **Usage dangereux du presse-papiers** ou comportement trompeur autour du
+  bouton de copie.
+- **Dépendance ou ressource tierce compromise** lorsqu'elle est contrôlée par le
+  projet.
+- **Workflow ou script de déploiement vulnérable** si une automatisation est
+  ajoutée au dépôt à l'avenir.
 
 ## Hors périmètre
 
-Les éléments suivants **ne sont pas considérés** comme des vulnérabilités du
-projet :
+Les éléments suivants ne sont pas considérés comme des vulnérabilités de ce
+dépôt :
 
-- Vulnérabilités du serveur Minecraft lui-même (à signaler directement au
-  staff du serveur via Discord).
-- Bugs d'affichage, problèmes UX ou fautes d'orthographe (utilisez les
-  issues GitHub publiques).
-- Comportements des APIs tierces utilisées (`api.mcstatus.io`,
-  `mc-heads.net`) : signalez-les directement aux fournisseurs concernés.
-- Volumes de requêtes ou rate-limiting côté API tierce.
-- Vulnérabilités exigeant un accès physique à la machine de l'utilisateur ou
-  un compte déjà compromis.
-- Attaques nécessitant des conditions irréalistes (versions de navigateur
-  non maintenues, extensions malveillantes, etc.).
-- Manque de headers HTTP qui sont contrôlés par GitHub Pages (le projet ne
-  peut pas les modifier).
+- Vulnérabilités du serveur Minecraft lui-même, à signaler directement au staff
+  via Discord.
+- Vulnérabilités de Discord, du service de statut externe, de Google Fonts ou de
+  GitHub Pages.
+- Problèmes UX, fautes d'orthographe, bugs visuels ou suggestions de contenu.
+- Attaques volumétriques, spam, déni de service réseau ou rate-limiting côté
+  services tiers.
+- Vulnérabilités exigeant un accès physique à la machine de l'utilisateur, un
+  compte déjà compromis ou une extension de navigateur malveillante.
+- Manque de headers HTTP contrôlés par l'hébergeur, sauf si le correctif peut
+  être appliqué directement dans ce dépôt.
 
 ## Bonnes pratiques pour les contributeurs
 
 Si vous contribuez au projet :
 
-- **Ne committez jamais** de clés API, tokens, mots de passe ou variables
-  d'environnement sensibles. Utilisez les `secrets` de GitHub Actions.
-- **Échappez systématiquement** toute donnée externe injectée dans le DOM :
-  privilégiez `textContent` à `innerHTML`.
-- **Validez** toute entrée provenant d'une API externe avant de la stocker
-  ou l'afficher.
-- **Limitez les permissions** des workflows GitHub Actions au strict
-  nécessaire (`permissions:` explicite).
-- **Mettez à jour** régulièrement les dépendances et les actions GitHub
-  (`@v4`, etc.).
+- Ne committez jamais de clés API, tokens, mots de passe ou variables
+  d'environnement sensibles.
+- Évitez `innerHTML` pour afficher des données externes. Préférez `textContent`
+  et des attributs explicitement contrôlés.
+- Ajoutez `rel="noopener noreferrer"` sur les liens externes ouverts dans un
+  nouvel onglet.
+- Gardez les URLs officielles faciles à relire lors des revues.
+- Testez les pages modifiées sur mobile et desktop avant de proposer une
+  modification.
+- Si des dépendances, workflows ou APIs sont ajoutés plus tard, limitez leurs
+  permissions et documentez leur rôle.
 
 ## Reconnaissance
 
-Les personnes ayant signalé des failles de manière responsable seront
-mentionnées dans le fichier `CREDITS` ou la section dédiée du site, sauf
-demande contraire de leur part.
+Les personnes ayant signalé des failles de manière responsable pourront être
+mentionnées dans les crédits du site, sauf demande contraire de leur part.
 
 ---
 
-Dernière mise à jour : 2026-05-18
+Dernière mise à jour : 2026-05-23

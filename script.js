@@ -151,6 +151,15 @@ window.addEventListener("pageshow", (e) => {
     }
 });
 
+const missingPath = document.querySelector("[data-missing-path]");
+if (missingPath) {
+    const requestedPath = `${window.location.pathname}${window.location.search}`;
+    missingPath.textContent =
+        requestedPath && !/\/404\.html$/.test(window.location.pathname)
+            ? requestedPath
+            : "lien inconnu";
+}
+
 document.querySelectorAll(".copy-btn").forEach((btn) => {
     btn.addEventListener("click", async () => {
         const value = btn.dataset.copy;
@@ -196,7 +205,7 @@ if (kicker) {
 }
 
 const revealTargets = document.querySelectorAll(
-    ".feature-card, .status-panel, .discord-text, .credit-card, .credits-thanks",
+    ".minigame-card, .feature-card, .status-panel, .discord-text, .credit-card, .credits-thanks, .legal-row",
 );
 revealTargets.forEach((el) => el.classList.add("reveal"));
 

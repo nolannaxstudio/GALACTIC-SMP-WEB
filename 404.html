@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="robots" content="noindex" />
+        <meta name="description" content="Page introuvable sur ZYRANEX." />
+
+        <title>404 - ZYRANEX</title>
+
+        <script>
+            (() => {
+                const repoBase = "/ZYRANEX-WEB-scorpion/";
+                const base = document.createElement("base");
+                base.href = window.location.pathname.startsWith(repoBase)
+                    ? repoBase
+                    : "/";
+                document.head.appendChild(base);
+            })();
+        </script>
+
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="48x48"
+            href="favicon-48x48.png"
+        />
+        <link rel="icon" type="image/x-icon" href="favicon.ico" />
+        <link rel="icon" type="image/webp" href="zyranex-48x48.webp" />
+        <link
+            rel="icon"
+            type="image/webp"
+            sizes="16x16"
+            href="zyranex-16x16.webp"
+        />
+        <link
+            rel="icon"
+            type="image/webp"
+            sizes="32x32"
+            href="zyranex-32x32.webp"
+        />
+        <link
+            rel="icon"
+            type="image/webp"
+            sizes="48x48"
+            href="zyranex-48x48.webp"
+        />
+        <link rel="apple-touch-icon" href="favicon-48x48.png" />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&display=swap"
+            rel="stylesheet"
+        />
+
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+
+    <body class="notfound-body">
+        <header>
+            <div class="container header-inner">
+                <a href="index.html" class="brand" aria-label="ZYRANEX">
+                    <img src="zyranex.webp" alt="ZYRANEX" class="brand-logo" />
+                </a>
+                <button
+                    class="menu-toggle"
+                    type="button"
+                    aria-label="Menu"
+                    aria-expanded="false"
+                    aria-controls="main-nav"
+                >
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <nav id="main-nav">
+                    <a href="index.html">Accueil</a>
+                    <a href="index.html#mini-games">Mini-jeux</a>
+                    <a
+                        href="https://status.zyranex.fr/fr"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        >Statut</a
+                    >
+                    <a href="credits.html">Crédits</a>
+                    <a
+                        href="https://discord.gg/rf8AcQwdMJ"
+                        target="_blank"
+                        rel="noopener"
+                        >Discord</a
+                    >
+                </nav>
+            </div>
+        </header>
+
+        <main>
+            <section class="hero notfound-hero" id="not-found">
+                <div class="container notfound-shell">
+                    <div class="notfound-main">
+                        <div class="chip-wrap notfound-chip-wrap">
+                            <span class="chip">
+                                <span class="chip-dot"></span>
+                                WORLD_STATUS : MISSING
+                            </span>
+                        </div>
+
+                        <p class="notfound-code">404</p>
+                        <h1 class="hero-title notfound-title">LIEN PERDU</h1>
+                        <p class="hero-text notfound-text">
+                            Ce portail ne mène à aucune zone chargée. La page a
+                            peut-être été supprimée, déplacée, ou l'adresse a
+                            simplement raté son spawn.
+                        </p>
+
+                        <div class="hero-actions notfound-actions">
+                            <a class="pix-btn pix-btn-primary" href="index.html"
+                                >RETOUR À L'ACCUEIL</a
+                            >
+                            <a
+                                class="pix-btn"
+                                href="https://discord.gg/rf8AcQwdMJ"
+                                target="_blank"
+                                rel="noopener"
+                                >DISCORD</a
+                            >
+                        </div>
+                    </div>
+
+                    <aside class="notfound-screen" aria-label="Diagnostic 404">
+                        <div class="notfound-map" aria-hidden="true">
+                            <span class="notfound-player"></span>
+                        </div>
+
+                        <div class="notfound-log">
+                            <p>
+                                &gt; route :
+                                <span data-missing-path>lien inconnu</span>
+                            </p>
+                            <p class="log-err">&gt; chunk introuvable</p>
+                            <p class="log-ok">&gt; retour possible au spawn</p>
+                        </div>
+                    </aside>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="container footer-inner">
+                <div class="footer-copy">
+                    <span>ZYRANEX // 2026</span>
+                    <span class="footer-meta"
+                        >Fait pour les joueurs, par des joueurs.</span
+                    >
+                </div>
+                <div
+                    class="footer-links"
+                    role="navigation"
+                    aria-label="Liens légaux"
+                >
+                    <a href="terms.html">Conditions</a>
+                    <a href="privacy.html">Confidentialité</a>
+                </div>
+            </div>
+        </footer>
+
+        <script src="script.js"></script>
+    </body>
+</html>
