@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZYRANEX - Hors ligne</title>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="maintenance-body">
+
+    <main>
+        <section class="maintenance-hero">
+            <div class="container">
+
+                <div class="chip-wrap">
+                    <div class="chip">
+                        <span class="chip-dot"></span>
+                        CONNEXION INDISPONIBLE
+                    </div>
+                </div>
+
+                <h1 class="hero-title maintenance-title">
+                    ZYRANEX
+                    <span class="maintenance-title-alt">
+                        HORS LIGNE
+                    </span>
+                </h1>
+
+                <p class="hero-text">
+                    Impossible de charger le site.
+                    Vérifie ta connexion Internet puis réessaie.
+                </p>
+
+                <div class="maintenance-panel">
+
+                    <div class="maintenance-row">
+                        <div>
+                            <div class="status-label">STATUT</div>
+                            <div class="status-value maintenance-value">
+                                <span class="dot dot-err"></span>
+                                AUCUNE CONNEXION
+                            </div>
+                        </div>
+
+                        <div class="loading-dots">
+                            <span class="dot-anim">.</span>
+                            <span class="dot-anim">.</span>
+                            <span class="dot-anim">.</span>
+                        </div>
+                    </div>
+
+                    <div class="maintenance-log">
+                        <p>[INFO] Vérification du réseau...</p>
+                        <p class="log-err">[ERREUR] Connexion Internet introuvable</p>
+                        <p>[INFO] Chargement de la page hors ligne...</p>
+                        <p class="log-ok">[OK] Mode hors ligne activé</p>
+                    </div>
+
+                </div>
+
+                <div class="hero-actions">
+                    <button class="pix-btn pix-btn-primary" onclick="location.reload()">
+                        RÉESSAYER
+                    </button>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>
