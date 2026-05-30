@@ -55,8 +55,8 @@ Le projet est un site statique HTML/CSS/JS pour **ZYRANEX**. Les éléments
 suivants entrent dans le périmètre :
 
 - Pages publiques du site : `index.html`, `credits.html`, `maintenance.html`,
-  `status.html`, `terms.html`, `privacy.html`.
-- Feuilles de style et scripts client : `styles.css`, `script.js`.
+  `offline.html`, `status.html`, `terms.html`, `privacy.html`.
+- Feuilles de style et scripts client : `styles.css`, `script.js`, `sw.js`.
 - Assets du site : logos, favicons et images servies avec le site.
 - Navigation, menu mobile, transitions, liens d'ancrage et bouton de copie de
   l'IP serveur.
