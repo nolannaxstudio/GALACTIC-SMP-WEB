@@ -1,74 +1,167 @@
 <!doctype html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZYRANEX - Hors ligne</title>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="robots" content="noindex" />
+        <meta
+            name="description"
+            content="Page hors ligne de ZYRANEX lorsque la connexion réseau est indisponible."
+        />
 
-    <link rel="stylesheet" href="styles.css">
-</head>
+        <title>Hors ligne - ZYRANEX</title>
 
-<body class="maintenance-body">
+        <script>
+            (() => {
+                const repoBase = "/ZYRANEX-WEB-scorpion/";
+                const base = document.createElement("base");
+                base.href = window.location.pathname.startsWith(repoBase)
+                    ? repoBase
+                    : "/";
+                document.head.appendChild(base);
+            })();
+        </script>
 
-    <main>
-        <section class="maintenance-hero">
-            <div class="container">
+        <link rel="icon" type="image/x-icon" href="favicon.ico" />
+        <link rel="icon" type="image/webp" href="zyranex-48x48.webp" />
+        <link
+            rel="icon"
+            type="image/webp"
+            sizes="16x16"
+            href="zyranex-16x16.webp"
+        />
+        <link
+            rel="icon"
+            type="image/webp"
+            sizes="32x32"
+            href="zyranex-32x32.webp"
+        />
+        <link
+            rel="icon"
+            type="image/webp"
+            sizes="48x48"
+            href="zyranex-48x48.webp"
+        />
+        <link rel="apple-touch-icon" href="zyranex-48x48.webp" />
 
-                <div class="chip-wrap">
-                    <div class="chip">
-                        <span class="chip-dot"></span>
-                        CONNEXION INDISPONIBLE
-                    </div>
-                </div>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&display=swap"
+            rel="stylesheet"
+        />
 
-                <h1 class="hero-title maintenance-title">
-                    ZYRANEX
-                    <span class="maintenance-title-alt">
-                        HORS LIGNE
-                    </span>
-                </h1>
+        <link rel="stylesheet" href="styles.css" />
+    </head>
 
-                <p class="hero-text">
-                    Impossible de charger le site.
-                    Vérifie ta connexion Internet puis réessaie.
-                </p>
-
-                <div class="maintenance-panel">
-
-                    <div class="maintenance-row">
-                        <div>
-                            <div class="status-label">STATUT</div>
-                            <div class="status-value maintenance-value">
-                                <span class="dot dot-err"></span>
-                                AUCUNE CONNEXION
-                            </div>
-                        </div>
-
-                        <div class="loading-dots">
-                            <span class="dot-anim">.</span>
-                            <span class="dot-anim">.</span>
-                            <span class="dot-anim">.</span>
-                        </div>
-                    </div>
-
-                    <div class="maintenance-log">
-                        <p>[INFO] Vérification du réseau...</p>
-                        <p class="log-err">[ERREUR] Connexion Internet introuvable</p>
-                        <p>[INFO] Chargement de la page hors ligne...</p>
-                        <p class="log-ok">[OK] Mode hors ligne activé</p>
-                    </div>
-
-                </div>
-
-                <div class="hero-actions">
-                    <button class="pix-btn pix-btn-primary" onclick="location.reload()">
-                        RÉESSAYER
-                    </button>
-                </div>
-
+    <body class="offline-body">
+        <header>
+            <div class="container header-inner">
+                <a href="index.html" class="brand" aria-label="ZYRANEX">
+                    <img src="zyranex.webp" alt="ZYRANEX" class="brand-logo" />
+                </a>
+                <button
+                    class="menu-toggle"
+                    type="button"
+                    aria-label="Menu"
+                    aria-expanded="false"
+                    aria-controls="main-nav"
+                >
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <nav id="main-nav">
+                    <a href="index.html">Accueil</a>
+                    <a href="index.html#mini-games">Mini-jeux</a>
+                    <a href="credits.html">Crédits</a>
+                    <a href="terms.html">Conditions</a>
+                </nav>
             </div>
-        </section>
-    </main>
+        </header>
 
-</body>
+        <main>
+            <section class="hero offline-hero" id="offline">
+                <div class="container offline-shell">
+                    <div class="offline-main">
+                        <div class="chip-wrap offline-chip-wrap">
+                            <span class="chip">
+                                <span class="chip-dot"></span>
+                                NETWORK_STATUS : OFFLINE
+                            </span>
+                        </div>
+
+                        <p class="offline-code">OFF</p>
+                        <h1 class="hero-title offline-title">
+                            CONNEXION PERDUE
+                        </h1>
+                        <p class="hero-text offline-text">
+                            Impossible de joindre ZYRANEX pour le moment. Garde
+                            cette page ouverte: dès que le réseau revient, tu
+                            peux relancer la tentative.
+                        </p>
+
+                        <div class="hero-actions offline-actions">
+                            <button
+                                class="pix-btn pix-btn-primary"
+                                type="button"
+                                data-reload-page
+                            >
+                                RÉESSAYER
+                            </button>
+                            <a class="pix-btn" href="index.html"
+                                >ACCUEIL EN CACHE</a
+                            >
+                        </div>
+                    </div>
+
+                    <aside
+                        class="offline-screen"
+                        aria-label="Diagnostic hors ligne"
+                    >
+                        <div class="offline-map" aria-hidden="true">
+                            <span class="offline-block block-grass block-a"></span>
+                            <span class="offline-block block-dirt block-b"></span>
+                            <span class="offline-block block-stone block-c"></span>
+                            <span class="offline-redstone redstone-left"></span>
+                            <span class="offline-redstone redstone-right"></span>
+                            <span class="offline-redstone-break"></span>
+                            <span class="offline-torch"></span>
+                            <span class="offline-signal-bar signal-one"></span>
+                            <span class="offline-signal-bar signal-two"></span>
+                            <span class="offline-signal-bar signal-three"></span>
+                        </div>
+
+                        <div class="offline-log">
+                            <p>&gt; ping zyranex.fr...</p>
+                            <p class="log-err">&gt; réseau indisponible</p>
+                            <p>&gt; page hors ligne chargée</p>
+                            <p class="log-ok">&gt; reprise automatique prête</p>
+                        </div>
+                    </aside>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="container footer-inner">
+                <div class="footer-copy">
+                    <span>ZYRANEX // 2026</span>
+                    <span class="footer-meta"
+                        >Mode hors ligne activé.</span
+                    >
+                </div>
+                <div
+                    class="footer-links"
+                    role="navigation"
+                    aria-label="Liens disponibles hors ligne"
+                >
+                    <a href="terms.html">Conditions</a>
+                    <a href="privacy.html">Confidentialité</a>
+                </div>
+            </div>
+        </footer>
+
+        <script src="script.js"></script>
+    </body>
 </html>

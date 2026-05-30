@@ -1,6 +1,14 @@
 const menuToggle = document.querySelector(".menu-toggle");
 const siteHeader = document.querySelector("header");
 
+if ("serviceWorker" in navigator && window.isSecureContext) {
+    window.addEventListener("load", () => {
+        navigator.serviceWorker
+            .register("sw.js")
+            .catch((error) => console.warn("Service worker:", error));
+    });
+}
+
 const closeMenu = () => {
     if (!siteHeader || !menuToggle) return;
     siteHeader.classList.remove("menu-open");
@@ -178,6 +186,12 @@ document.querySelectorAll(".copy-btn").forEach((btn) => {
                 btn.textContent = "COPIER";
             }, 1400);
         }
+    });
+});
+
+document.querySelectorAll("[data-reload-page]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+        window.location.reload();
     });
 });
 
