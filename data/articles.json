@@ -67,6 +67,10 @@
       "date": "2026-06-02",
       "imageFit": "contain",
       "title": "test",
+      "content": [
+        "test paragraphe 1",
+        "test paragraphe 2"
+      ],
       "image": "/assets/images/articles/canvas.png",
       "category": "test"
     }
