@@ -1,0 +1,43 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "assets/images/articles"
+public_folder: "/assets/images/articles"
+
+collections:
+  - name: "contenu"
+    label: "Contenu du site"
+    files:
+      - name: "articles"
+        label: "Articles"
+        file: "data/articles.json"
+        format: "json"
+        fields:
+          - label: "Articles"
+            name: "articles"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Publié", name: "published", widget: "boolean", default: true }
+              - { label: "Mis en avant", name: "featured", widget: "boolean", default: false }
+              - { label: "Titre", name: "title", widget: "string" }
+              - { label: "Slug", name: "slug", widget: "string", hint: "Exemple: lancement-portail-zyranex. Garder des lettres minuscules, chiffres et tirets." }
+              - { label: "Date", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false }
+              - { label: "Auteur", name: "author", widget: "string", default: "Staff ZYRANEX" }
+              - { label: "Catégorie", name: "category", widget: "string", default: "Annonce" }
+              - { label: "Image", name: "image", widget: "image", required: false, hint: "Les images ajoutées ici sont rangées dans assets/images/articles." }
+              - { label: "Texte alternatif de l'image", name: "imageAlt", widget: "string", required: false }
+              - label: "Adaptation de l'image"
+                name: "imageFit"
+                widget: "select"
+                default: "contain"
+                options:
+                  - { label: "Image entière avec fond flouté", value: "contain" }
+                  - { label: "Recadrer pour remplir le cadre", value: "cover" }
+              - { label: "Position de l'image", name: "imagePosition", widget: "string", default: "center center", hint: "Exemples: center center, top center, 50% 35%." }
+              - { label: "Résumé", name: "excerpt", widget: "text" }
+              - label: "Paragraphes"
+                name: "content"
+                widget: "list"
+                field: { label: "Paragraphe", name: "paragraph", widget: "text" }

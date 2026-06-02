@@ -8,14 +8,18 @@ légales et les informations de sécurité du projet.
 ## Pages
 
 - `index.html` : page d'accueil, mini-jeux, IP serveur et appel Discord.
-- `credits.html` : crédits du projet et contributeurs.
+- `articles/index.html` : liste des articles et recherche (`/articles/`).
+- `articles/detail/index.html` : lecture d'un article via `?slug=...`.
+- `credits/index.html` : crédits du projet et contributeurs.
 - `404.html` : page affichée lorsqu'une URL n'existe pas.
-- `maintenance.html` : page d'indisponibilité stylisée.
-- `offline.html` : page chargée automatiquement lorsque le réseau est coupé.
-- `status.html` : redirection vers le statut public.
-- `terms.html` : conditions d'utilisation.
-- `privacy.html` : politique de confidentialité.
+- `maintenance/index.html` : page d'indisponibilité stylisée.
+- `offline/index.html` : page chargée automatiquement lorsque le réseau est coupé.
+- `status/index.html` : redirection locale vers le statut public.
+- `terms/index.html` : conditions d'utilisation.
+- `privacy/index.html` : politique de confidentialité.
+- `_redirects` : redirections Netlify pour garder les anciennes URLs `.html`.
 - `SECURITY.md` : politique de signalement des failles.
+- `docs/articles.md` : guide d'édition des articles.
 
 ## Lancement local
 
@@ -28,36 +32,56 @@ python3 -m http.server 4173
 Puis ouvrir :
 
 ```text
-http://localhost:4173/index.html
+http://localhost:4173/
 ```
 
-Sur GitHub Pages, `404.html` est automatiquement affichée pour les URLs
-inexistantes après déploiement. En local, certains serveurs de preview peuvent
-afficher leur propre message comme `Cannot GET /about.html`; pour vérifier le
-rendu localement, ouvrez directement `http://localhost:4173/404.html`.
+Sur Netlify, `_redirects` garde les anciennes URLs comme `/articles.html` et
+les renvoie vers les nouvelles URLs propres comme `/articles/`.
 
 Un service worker (`sw.js`) met en cache la page hors ligne et les assets
 essentiels. Après une première visite en ligne, les navigations HTML échouées
-affichent automatiquement `offline.html`.
+affichent automatiquement `/offline/`.
 
 ## Structure
 
 ```text
 .
 ├── index.html
-├── credits.html
 ├── 404.html
-├── maintenance.html
-├── offline.html
-├── status.html
-├── terms.html
-├── privacy.html
-├── styles.css
-├── script.js
+├── _redirects
 ├── sw.js
+├── articles/
+│   ├── index.html
+│   └── detail/
+│       └── index.html
+├── credits/
+│   └── index.html
+├── terms/
+│   └── index.html
+├── privacy/
+│   └── index.html
+├── maintenance/
+│   └── index.html
+├── offline/
+│   └── index.html
+├── status/
+│   └── index.html
+├── data/
+│   └── articles.json
+├── admin/
+│   ├── config.yml
+│   └── index.html
 ├── SECURITY.md
+├── docs/
+│   └── articles.md
 └── assets/
+    ├── css/
+    │   └── styles.css
+    ├── js/
+    │   └── script.js
     └── images/
+        ├── brand/
+        ├── articles/
         ├── games/
         └── spawn.webp
 ```
@@ -73,6 +97,15 @@ affichent automatiquement `offline.html`.
 
 Les captures des mini-jeux sont rangées dans `assets/images/games/`. L'image
 du spawn sert de fond à la section d'accueil.
+
+## Articles
+
+Les articles affichés sur l'accueil, `/articles/` et `/articles/detail/` sont
+stockés dans `data/articles.json`.
+
+Pour une édition confortable sans développeur, le dossier `admin/` fournit une
+configuration Decap CMS compatible avec Netlify gratuit + Git Gateway. Voir
+`docs/articles.md` pour le flux recommandé et les champs disponibles.
 
 ## Contribution
 

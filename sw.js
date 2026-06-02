@@ -1,15 +1,19 @@
-const CACHE_VERSION = "zyranex-offline-v2";
+const CACHE_VERSION = "zyranex-offline-v5";
 const APP_SHELL = [
     "./",
     "index.html",
-    "offline.html",
-    "styles.css",
-    "script.js",
-    "zyranex.webp",
-    "zyranex-16x16.webp",
-    "zyranex-32x32.webp",
-    "zyranex-48x48.webp",
-    "favicon.ico",
+    "articles/index.html",
+    "articles/detail/index.html",
+    "offline/index.html",
+    "assets/css/styles.css?v=5",
+    "assets/js/script.js?v=5",
+    "data/articles.json",
+    "assets/images/brand/zyranex.webp",
+    "assets/images/brand/zyranex-16x16.webp",
+    "assets/images/brand/zyranex-32x32.webp",
+    "assets/images/brand/zyranex-48x48.webp",
+    "assets/images/brand/favicon.ico",
+    "assets/images/brand/favicon-48x48.png",
     "assets/images/spawn.webp",
 ];
 
@@ -53,7 +57,7 @@ self.addEventListener("fetch", (event) => {
         event.respondWith(
             fetch(request).catch(() =>
                 caches
-                    .match(toScopeUrl("offline.html"), {
+                    .match(toScopeUrl("offline/index.html"), {
                         ignoreSearch: true,
                     })
                     .then((response) => response || Response.error()),
@@ -63,6 +67,30 @@ self.addEventListener("fetch", (event) => {
     }
 
     if (!isSameOrigin(requestUrl)) return;
+
+    if (requestUrl.pathname.endsWith("/data/articles.json")) {
+        event.respondWith(
+            fetch(request)
+                .then((networkResponse) => {
+                    if (!networkResponse || networkResponse.status !== 200) {
+                        return networkResponse;
+                    }
+
+                    const responseClone = networkResponse.clone();
+                    caches.open(CACHE_VERSION).then((cache) => {
+                        cache.put(request, responseClone);
+                    });
+
+                    return networkResponse;
+                })
+                .catch(() =>
+                    caches
+                        .match(request)
+                        .then((response) => response || Response.error()),
+                ),
+        );
+        return;
+    }
 
     event.respondWith(
         caches.match(request).then((cachedResponse) => {
