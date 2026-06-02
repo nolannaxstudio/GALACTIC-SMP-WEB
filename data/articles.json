@@ -56,23 +56,6 @@
       ],
       "image": "/assets/images/games/freebuild.webp",
       "category": "Communauté"
-    },
-    {
-      "excerpt": "test ceci est un test",
-      "imagePosition": "center center",
-      "author": "test",
-      "slug": "test",
-      "featured": false,
-      "published": true,
-      "date": "2026-06-02",
-      "imageFit": "contain",
-      "title": "test",
-      "content": [
-        "test paragraphe 1",
-        "test paragraphe 2"
-      ],
-      "image": "/assets/images/articles/canvas.png",
-      "category": "test"
     }
   ]
 }
