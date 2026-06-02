@@ -18,6 +18,11 @@ Option recommandée pour un client non-développeur:
 Decap CMS écrit alors dans `data/articles.json` et range les images envoyées
 dans `assets/images/articles/`.
 
+Quand Netlify envoie une invitation, le lien arrive sur la page d'accueil avec
+un `#invite_token=...`. Le fichier `assets/js/identity.js` traite ce lien avec
+Netlify Identity, permet à la personne de créer son mot de passe, puis la renvoie
+vers `/admin/`.
+
 ## Ajouter une image
 
 Dans `/admin/`, ouvrir un article puis utiliser le champ `Image`. L'image est
