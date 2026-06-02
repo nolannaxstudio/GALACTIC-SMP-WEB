@@ -63,7 +63,7 @@
       "author": "test",
       "slug": "test",
       "featured": false,
-      "published": false,
+      "published": true,
       "date": "2026-06-02",
       "imageFit": "contain",
       "title": "test",
