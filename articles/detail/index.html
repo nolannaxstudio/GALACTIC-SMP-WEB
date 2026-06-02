@@ -3,21 +3,13 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="robots" content="noindex" />
-        <meta name="description" content="Page introuvable sur ZYRANEX." />
+        <meta
+            name="description"
+            content="Article du serveur Minecraft ZYRANEX."
+            data-article-description
+        />
 
-        <title>404 - ZYRANEX</title>
-
-        <script>
-            (() => {
-                const repoBase = "/ZYRANEX-WEB-scorpion/";
-                const base = document.createElement("base");
-                base.href = window.location.pathname.startsWith(repoBase)
-                    ? repoBase
-                    : "/";
-                document.head.appendChild(base);
-            })();
-        </script>
+        <title>Article - ZYRANEX</title>
 
         <link
             rel="icon"
@@ -57,7 +49,7 @@
         <link rel="stylesheet" href="/assets/css/styles.css?v=5" />
     </head>
 
-    <body class="notfound-body">
+    <body>
         <header>
             <div class="container header-inner">
                 <a href="/" class="brand" aria-label="ZYRANEX">
@@ -76,7 +68,7 @@
                 </button>
                 <nav id="main-nav">
                     <a href="/">Accueil</a>
-                    <a href="/articles/">Articles</a>
+                    <a href="/articles/" class="active">Articles</a>
                     <a href="/#mini-games">Mini-jeux</a>
                     <a
                         href="https://status.zyranex.fr/"
@@ -96,52 +88,28 @@
         </header>
 
         <main>
-            <section class="hero notfound-hero" id="not-found">
-                <div class="container notfound-shell">
-                    <div class="notfound-main">
-                        <div class="chip-wrap notfound-chip-wrap">
-                            <span class="chip">
-                                <span class="chip-dot"></span>
-                                WORLD_STATUS : MISSING
-                            </span>
-                        </div>
+            <section class="hero hero-sm article-detail-hero">
+                <div class="container">
+                    <a class="article-back-link" href="/articles/"
+                        >&lt; Tous les articles</a
+                    >
+                    <p class="kicker" data-article-detail-kicker>
+                        // ARTICLE
+                    </p>
+                    <h1 class="hero-title article-detail-title" data-article-title>
+                        Chargement...
+                    </h1>
+                    <p class="hero-text" data-article-excerpt>
+                        Récupération de l'article.
+                    </p>
+                </div>
+            </section>
 
-                        <p class="notfound-code">404</p>
-                        <h1 class="hero-title notfound-title">LIEN PERDU</h1>
-                        <p class="hero-text notfound-text">
-                            Ce portail ne mène à aucune zone chargée. La page a
-                            peut-être été supprimée, déplacée, ou l'adresse a
-                            simplement raté son spawn.
-                        </p>
-
-                        <div class="hero-actions notfound-actions">
-                            <a class="pix-btn pix-btn-primary" href="/"
-                                >RETOUR À L'ACCUEIL</a
-                            >
-                            <a
-                                class="pix-btn"
-                                href="https://discord.gg/rf8AcQwdMJ"
-                                target="_blank"
-                                rel="noopener"
-                                >DISCORD</a
-                            >
-                        </div>
-                    </div>
-
-                    <aside class="notfound-screen" aria-label="Diagnostic 404">
-                        <div class="notfound-map" aria-hidden="true">
-                            <span class="notfound-player"></span>
-                        </div>
-
-                        <div class="notfound-log">
-                            <p>
-                                &gt; route :
-                                <span data-missing-path>lien inconnu</span>
-                            </p>
-                            <p class="log-err">&gt; chunk introuvable</p>
-                            <p class="log-ok">&gt; retour possible au spawn</p>
-                        </div>
-                    </aside>
+            <section class="section article-detail-section">
+                <div class="container">
+                    <article class="article-detail" data-article-detail>
+                        <p class="article-loading">Chargement de l'article...</p>
+                    </article>
                 </div>
             </section>
         </main>

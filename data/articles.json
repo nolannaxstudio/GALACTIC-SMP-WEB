@@ -1,0 +1,61 @@
+{
+  "articles": [
+    {
+      "excerpt": "Le site ZYRANEX accueille une vraie zone d'articles pour suivre les annonces, les patch notes et les temps forts du serveur.",
+      "imagePosition": "center center",
+      "author": "Staff ZYRANEX",
+      "slug": "lancement-portail-zyranex",
+      "featured": true,
+      "published": true,
+      "imageAlt": "Vue du spawn ZYRANEX depuis les hauteurs",
+      "date": "2026-06-02",
+      "imageFit": "contain",
+      "title": "Lancement du portail ZYRANEX",
+      "content": [
+        "Le portail ZYRANEX regroupe maintenant les informations importantes du serveur dans un espace plus simple à parcourir: mini-jeux, statut, Discord et articles.",
+        "Cette nouvelle section servira aux annonces, aux changements de modes de jeu, aux ouvertures de recrutement et aux événements communautaires.",
+        "Le contenu est stocké dans un fichier de données séparé du HTML. Il peut donc être mis à jour sans modifier la structure du site."
+      ],
+      "image": "/assets/images/spawn.webp",
+      "category": "Annonce"
+    },
+    {
+      "excerpt": "Cache Cache, The Bridge, PvP Mace et Freebuild: un tour rapide des modes qui font vivre les sessions ZYRANEX.",
+      "imagePosition": "center center",
+      "author": "Équipe jeu",
+      "slug": "mini-jeux-a-surveiller",
+      "featured": false,
+      "published": true,
+      "imageAlt": "Capture du mini-jeu The Bridge",
+      "date": "2026-05-28",
+      "imageFit": "contain",
+      "title": "Les mini-jeux à surveiller",
+      "content": [
+        "Chaque mode a son rythme. The Bridge mise sur la pression constante, Cache Cache sur l'observation, et PvP Mace sur les prises de risque.",
+        "La section articles permet de présenter les changements de règles, les cartes mises en avant et les retours importants de la communauté.",
+        "Les prochains billets pourront aussi annoncer les sessions spéciales et les tests ouverts aux joueurs."
+      ],
+      "image": "/assets/images/games/the-bridge.webp",
+      "category": "Mini-jeux"
+    },
+    {
+      "excerpt": "Les meilleures idées arrivent souvent des joueurs. Voici comment les envoyer clairement à l'équipe.",
+      "imagePosition": "center center",
+      "author": "Moderation",
+      "slug": "proposer-une-idee",
+      "featured": false,
+      "published": true,
+      "imageAlt": "Capture du mode Freebuild",
+      "date": "2026-05-20",
+      "imageFit": "contain",
+      "title": "Comment proposer une idée",
+      "content": [
+        "Avant de proposer une idée, décris le problème ou l'envie que tu veux résoudre. Une bonne suggestion explique le contexte avant la solution.",
+        "Ajoute ensuite les règles principales, les limites possibles et ce qui rendrait le mode amusant en partie courte.",
+        "Le Discord reste l'endroit le plus pratique pour échanger avec l'équipe et suivre les retours."
+      ],
+      "image": "/assets/images/games/freebuild.webp",
+      "category": "Communauté"
+    }
+  ]
+}
