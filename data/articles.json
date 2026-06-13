@@ -56,6 +56,24 @@
       ],
       "image": "/assets/images/games/freebuild.webp",
       "category": "Communauté"
+    },
+    {
+      "excerpt": "Un tout nouveau lobby est actuellement en préparation sur ZYRANEX. Découvrez bientôt un hub entièrement repensé avec un design moderne, de nouvelles fonctionnalités et une meilleure expérience pour tous les joueurs.",
+      "imagePosition": "center center",
+      "author": "Staff ZYRANEX",
+      "slug": "nouveau-lobby-a-venir",
+      "featured": false,
+      "published": true,
+      "imageAlt": "à venir",
+      "date": "2026-06-03",
+      "imageFit": "contain",
+      "title": "Nouveau lobby à venir",
+      "content": [
+        "Nous préparons actuellement un nouveau lobby pour ZYRANEX. Il n'est pas encore terminé, mais nous espérons qu'il vous plaira une fois disponible. 😊",
+        "Merci à tous pour votre soutien. Nous avons hâte de vous retrouver sur ce nouveau lobby et nous partagerons bientôt plus d'informations ! 🚀"
+      ],
+      "image": "/assets/images/articles/untitled-project-7-.jpg",
+      "category": "Annonce"
     }
   ]
 }
