@@ -106,61 +106,35 @@ img {
 }
 
 /* ----- PAGE TRANSITIONS ----- */
+/* Entrée de la nouvelle page */
 main {
-    animation: pageEnter 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
-    will-change: opacity, transform;
+    animation: pageEnter 0.5s ease forwards;
 }
 
 @keyframes pageEnter {
-    0% {
+    from {
         opacity: 0;
-        transform: translateY(14px);
-        filter: blur(2px);
+        transform: translateX(100%);
     }
-    100% {
+    to {
         opacity: 1;
-        transform: translateY(0);
-        filter: blur(0);
+        transform: translateX(0);
     }
 }
 
+/* Sortie de l'ancienne page */
 body.is-leaving main {
-    animation: pageExit 0.32s cubic-bezier(0.55, 0, 0.65, 0.2) both;
+    animation: pageExit 0.5s ease forwards;
 }
 
 @keyframes pageExit {
-    0% {
+    from {
         opacity: 1;
-        transform: translateY(0);
-        filter: blur(0);
+        transform: translateX(0);
     }
-    100% {
+    to {
         opacity: 0;
-        transform: translateY(-10px);
-        filter: blur(3px);
-    }
-}
-
-body.is-leaving header,
-body.is-leaving footer {
-    animation: headFootFade 0.32s cubic-bezier(0.55, 0, 0.65, 0.2) both;
-}
-
-@keyframes headFootFade {
-    0% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 0.5;
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    main,
-    body.is-leaving main,
-    body.is-leaving header,
-    body.is-leaving footer {
-        animation: none !important;
+        transform: translateX(-100%);
     }
 }
 
