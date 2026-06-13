@@ -106,61 +106,51 @@ img {
 }
 
 /* ----- PAGE TRANSITIONS ----- */
-main {
-    animation: pageEnter 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
-    will-change: opacity, transform;
+@view-transition {
+    navigation: auto;
 }
 
-@keyframes pageEnter {
-    0% {
-        opacity: 0;
-        transform: translateY(14px);
-        filter: blur(2px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-        filter: blur(0);
+::view-transition-group(root) {
+    animation-duration: 0.72s;
+    animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+::view-transition {
+    background: var(--bg-deep);
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation-duration: 0.72s;
+    animation-fill-mode: both;
+    animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+    backface-visibility: hidden;
+    mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+    animation-name: page-slide-out;
+}
+
+::view-transition-new(root) {
+    animation-name: page-slide-in;
+}
+
+@keyframes page-slide-out {
+    to {
+        transform: translateX(-100vw);
     }
 }
 
-body.is-leaving main {
-    animation: pageExit 0.32s cubic-bezier(0.55, 0, 0.65, 0.2) both;
-}
-
-@keyframes pageExit {
-    0% {
-        opacity: 1;
-        transform: translateY(0);
-        filter: blur(0);
-    }
-    100% {
-        opacity: 0;
-        transform: translateY(-10px);
-        filter: blur(3px);
-    }
-}
-
-body.is-leaving header,
-body.is-leaving footer {
-    animation: headFootFade 0.32s cubic-bezier(0.55, 0, 0.65, 0.2) both;
-}
-
-@keyframes headFootFade {
-    0% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 0.5;
+@keyframes page-slide-in {
+    from {
+        transform: translateX(100vw);
     }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    main,
-    body.is-leaving main,
-    body.is-leaving header,
-    body.is-leaving footer {
-        animation: none !important;
+    @view-transition {
+        navigation: none;
     }
 }
 
