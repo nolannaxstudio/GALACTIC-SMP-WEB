@@ -401,8 +401,25 @@
             </div>
         </footer>
 
-        <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-        <script src="/assets/js/identity.js?v=1"></script>
-        <script src="/assets/js/script.js?v=5"></script>
-    </body>
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script src="/assets/js/identity.js?v=1"></script>
+<script src="/assets/js/script.js?v=5"></script>
+
+<script>
+document.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", function(e) {
+        if (this.href && this.hostname === location.hostname) {
+            e.preventDefault();
+
+            document.body.classList.add("is-leaving");
+
+            setTimeout(() => {
+                window.location.href = this.href;
+            }, 500);
+        }
+    });
+});
+</script>
+
+</body>
 </html>
