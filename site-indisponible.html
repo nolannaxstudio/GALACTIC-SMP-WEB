@@ -1,69 +1,61 @@
-```html
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zyranex • Mise à jour majeure</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zyranex • Indisponible</title>
 
-    <link rel="stylesheet" href="assets/css/styles.css">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body class="maintenance-body">
 
-<section class="maintenance-hero">
-    <div class="container">
+<body>
 
-        <h1 class="hero-title maintenance-title">
-            ZYRANEX
-            <span class="maintenance-title-alt">GROSSE UPDATE</span>
-        </h1>
+<!-- LOADER -->
+<div id="loader">
+    <div class="loader-box">
+        <img src="assets/images/brand/zyranex-48x48.webp" alt="logo">
+        <div class="spinner"></div>
+        <p>Chargement...</p>
+    </div>
+</div>
 
-        <p class="hero-text">
-            Nos développeurs travaillent actuellement sur une refonte
-            majeure du serveur et du site web.
-        </p>
+<!-- PAGE -->
+<main id="main">
+    <div class="card">
 
-        <div class="maintenance-panel">
-
-            <div class="maintenance-row">
-                <div>
-                    <div class="status-label">ÉTAT DU PROJET</div>
-                    <div class="status-value maintenance-value">
-                        <span class="dot dot-warn"></span>
-                        MISE À JOUR EN COURS
-                    </div>
-                </div>
-
-                <div class="loading-dots">
-                    CHARGEMENT
-                    <span class="dot-anim">.</span>
-                    <span class="dot-anim">.</span>
-                    <span class="dot-anim">.</span>
-                </div>
-            </div>
-
-            <div class="maintenance-log">
-                <p>[INFO] Téléchargement des nouveaux systèmes...</p>
-                <p>[INFO] Refonte complète du gameplay...</p>
-                <p>[INFO] Optimisation des performances...</p>
-                <p>[INFO] Ajout de nouvelles fonctionnalités...</p>
-                <p class="log-ok">[OK] Développement en cours...</p>
-            </div>
-
+        <div class="logo">
+            <img src="assets/images/brand/zyranex-48x48.webp" alt="Zyranex logo">
         </div>
 
-        <div class="hero-actions">
-            <a href="#" class="pix-btn pix-btn-primary">
-                Revenez plus tard
-            </a>
+        <h1>Zyranex</h1>
+
+        <div class="status">
+            ⚠ Service temporairement indisponible
+        </div>
+
+        <p>
+            Nos équipes effectuent actuellement une maintenance afin
+            d’améliorer la stabilité et les performances du service.
+        </p>
+
+        <div class="badge">
+            Revenez plus tard
         </div>
 
     </div>
-</section>
+</main>
+
+<script>
+setTimeout(() => {
+    document.getElementById("loader").style.opacity = "0";
+
+    setTimeout(() => {
+        document.getElementById("loader").style.display = "none";
+        document.getElementById("main").classList.add("show");
+    }, 500);
+
+}, 3000);
+</script>
 
 </body>
 </html>
-```
