@@ -1,13 +1,13 @@
-const CACHE_VERSION = "zyranex-offline-v6";
+const CACHE_VERSION = "zyranex-offline-v7";
 const APP_SHELL = [
     "./",
     "index.html",
     "articles/index.html",
     "articles/detail/index.html",
     "offline/index.html",
-    "assets/css/styles.css?v=5",
+    "assets/css/styles.css?v=6",
     "assets/js/identity.js?v=1",
-    "assets/js/script.js?v=5",
+    "assets/js/script.js?v=6",
     "data/articles.json",
     "assets/images/brand/zyranex.webp",
     "assets/images/brand/zyranex-16x16.webp",
